@@ -115,8 +115,8 @@ export default function MainPage() {
             {/* Navigation */}
             <nav className="py-6 px-8 flex justify-between items-center backdrop-blur-sm bg-white/70 dark:bg-gray-900/70">
                 <div className="flex items-center space-x-3">
-                    <div className="w-10 h-10 bg-orange-300 rounded-full flex items-center justify-center border-2 border-orange-400">
-                        <span className="text-lg">🦙</span>
+                    <div className="w-10 h-10 bg-orange-300 rounded-full flex items-center justify-center border-2 border-orange-400 overflow-hidden">
+                        <img src="/images/alpaca.png" alt="Alpaca Portrait" />
                     </div>
                     <span className="text-xl font-semibold text-gray-800 dark:text-gray-200">
                         Adi Nata
@@ -159,8 +159,8 @@ export default function MainPage() {
                     className={`transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
                 >
                     <div className="text-center mb-16">
-                        <div className="w-32 h-32 mx-auto mb-8 bg-orange-300 rounded-full flex items-center justify-center border-4 border-orange-400 shadow-lg">
-                            <span className="text-6xl">🦙</span>
+                        <div className="w-32 h-32 mx-auto mb-8 bg-orange-300 rounded-full flex items-center justify-center border-4 border-orange-400 shadow-lg overflow-hidden">
+                            <img src="/images/alpaca.png" alt="Alpaca Portrait" />
                         </div>
                         <h1 className="text-5xl md:text-7xl font-bold text-gray-800 dark:text-gray-200 mb-6">
                             Hi, I{"'"}m
@@ -329,8 +329,8 @@ export default function MainPage() {
             <footer className="bg-gray-800 dark:bg-gray-900 text-white py-8 px-8 mt-20">
                 <div className="max-w-6xl mx-auto text-center">
                     <div className="flex items-center justify-center space-x-3 mb-4">
-                        <div className="w-8 h-8 bg-orange-300 rounded-full flex items-center justify-center">
-                            <span className="text-sm">🦙</span>
+                        <div className="w-8 h-8 bg-orange-300 rounded-full flex items-center justify-center overflow-hidden">
+                            <img src="/images/alpaca.png" alt="Alpaca Portrait" />
                         </div>
                         <span className="text-lg font-semibold">
                             Created with Next and Tailwind by Adi Nata
