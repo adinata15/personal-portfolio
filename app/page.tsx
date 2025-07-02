@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { ThemeToggle } from '@/components/theme-toggle';
 import { triggerHref } from '@/lib/utils';
 
-export default function Page() {
+export default function MainPage() {
     const [isVisible, setIsVisible] = useState(false);
 
     useEffect(() => {
@@ -179,7 +179,7 @@ export default function Page() {
                             , and
                             <span className="text-purple-600 dark:text-purple-400 font-semibold">
                                 {' '}
-                                stories
+                                cool stories
                             </span>
                         </p>
                         <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -287,6 +287,14 @@ export default function Page() {
                                 </p>
                             </div>
                         ))}
+                    </div>
+                    <div className="flex w-full justify-center my-6">
+                        <button
+                            onClick={() => triggerHref('/resume', true)}
+                            className="px-8 py-3 bg-green-600 text-white rounded-full hover:bg-green-700 dark:bg-green-500 dark:hover:bg-green-600 transition-colors shadow-lg"
+                        >
+                            View Full Resume
+                        </button>
                     </div>
                 </section>
 
