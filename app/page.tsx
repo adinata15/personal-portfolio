@@ -163,7 +163,7 @@ export default function Page() {
                             <span className="text-6xl">🦙</span>
                         </div>
                         <h1 className="text-5xl md:text-7xl font-bold text-gray-800 dark:text-gray-200 mb-6">
-                            Hi, I'm
+                            Hi, I{"'"}m
                             <span className="text-green-600 dark:text-green-400"> Adi Nata</span>
                         </h1>
                         <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 mb-8 max-w-3xl mx-auto">
@@ -208,9 +208,9 @@ export default function Page() {
                         <div className="grid md:grid-cols-2 gap-8 items-center">
                             <div>
                                 <p className="text-gray-700 dark:text-gray-300 text-lg leading-relaxed mb-4">
-                                    I'm a versatile software engineer with a passion for creating
-                                    innovative solutions across multiple domains. When I'm not
-                                    coding, you'll find me exploring the great outdoors, reading
+                                    I am a versatile software engineer with a passion for creating
+                                    innovative solutions across multiple domains. When I am not
+                                    coding, you will find me exploring the great outdoors, reading
                                     books, or planning my next adventure.
                                 </p>
                                 <p className="text-gray-700 dark:text-gray-300 text-lg leading-relaxed">
@@ -294,7 +294,7 @@ export default function Page() {
                 <section id="contact" className="text-center">
                     <div className="bg-gradient-to-r from-green-500 to-blue-500 dark:from-green-600 dark:to-blue-600 rounded-2xl p-8 text-white shadow-lg">
                         <h2 className="text-3xl font-bold mb-4">
-                            Let's Build Something Amazing Together
+                            Let{"'"}s Build Something Amazing Together
                         </h2>
                         <p className="text-xl mb-6 opacity-90">
                             Ready to embark on your next technological adventure? Contact me now!
