@@ -112,7 +112,7 @@ export default function MainPage() {
     ];
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-green-50 via-blue-50 to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
+        <div className="min-h-screen bg-gradient-to-br from-green-50 via-blue-50 to-purple-50 dark:from-green-950 dark:via-blue-950 dark:to-purple-950">
             {/* Navigation */}
             <nav className="py-6 px-8 flex justify-between items-center backdrop-blur-sm bg-white/70 dark:bg-gray-900/70">
                 <div className="flex items-center space-x-3">
@@ -212,41 +212,39 @@ export default function MainPage() {
 
                 {/* About Section */}
                 <section id="about" className="mb-20">
-                    <div className="bg-white/60 dark:bg-gray-800/60 backdrop-blur-sm rounded-2xl p-8 shadow-lg">
-                        <h2 className="text-3xl font-bold text-gray-800 dark:text-gray-200 mb-6 text-center">
-                            About Me
-                        </h2>
-                        <div className="grid md:grid-cols-2 gap-8 items-center">
-                            <div>
-                                <p className="text-gray-700 dark:text-gray-300 text-lg leading-relaxed mb-4">
-                                    I am a versatile software engineer with a passion for creating
-                                    innovative solutions across multiple domains. When I am not
-                                    coding, you will find me exploring the great outdoors, reading
-                                    books, or planning my next adventure.
-                                </p>
-                                <p className="text-gray-700 dark:text-gray-300 text-lg leading-relaxed">
-                                    My love for nature inspires my approach to technology - building
-                                    sustainable, efficient, and harmonious systems that make a
-                                    positive impact.
-                                </p>
-                            </div>
-                            <div className="text-center">
-                                <div className="flex justify-center items-center space-x-4">
-                                    <span className="flex-col text-gray-600 dark:text-gray-400">
-                                        <p className="mb-4 text-4xl">💻</p>
-                                        <p className="italic">Technology</p>
-                                    </span>
-                                    <span className="text-gray-600 dark:text-gray-400">•</span>
-                                    <span className="flex-col text-gray-600 dark:text-gray-400">
-                                        <p className="mb-4 text-4xl">🏔️</p>
-                                        <p className="italic">Nature</p>
-                                    </span>
-                                    <span className="text-gray-600 dark:text-gray-400">•</span>
-                                    <span className="flex-col text-gray-600 dark:text-gray-400">
-                                        <p className="mb-4 text-4xl">📚</p>
-                                        <p className="italic">Stories</p>
-                                    </span>
-                                </div>
+                    <h2 className="text-3xl font-bold text-gray-800 dark:text-gray-200 mb-6 text-center">
+                        About Me
+                    </h2>
+                    <div className="grid md:grid-cols-2 gap-8 items-center bg-white/60 dark:bg-gray-800/60 backdrop-blur-sm rounded-2xl p-8 shadow-md ring-1 ring-gray-900/10 dark:ring-blue-400/10">
+                        <div>
+                            <p className="text-gray-700 dark:text-gray-300 text-lg leading-relaxed mb-4">
+                                I am a versatile software engineer with a passion for creating
+                                innovative solutions across multiple domains. When I am not coding,
+                                you will find me exploring the great outdoors, reading books, or
+                                planning my next adventure.
+                            </p>
+                            <p className="text-gray-700 dark:text-gray-300 text-lg leading-relaxed">
+                                My love for nature inspires my approach to technology - building
+                                sustainable, efficient, and harmonious systems that make a positive
+                                impact.
+                            </p>
+                        </div>
+                        <div className="text-center">
+                            <div className="flex justify-center items-center space-x-4">
+                                <span className="flex-col text-gray-600 dark:text-gray-400">
+                                    <p className="mb-4 text-4xl">💻</p>
+                                    <p className="italic">Technology</p>
+                                </span>
+                                <span className="text-gray-600 dark:text-gray-400">•</span>
+                                <span className="flex-col text-gray-600 dark:text-gray-400">
+                                    <p className="mb-4 text-4xl">🏔️</p>
+                                    <p className="italic">Nature</p>
+                                </span>
+                                <span className="text-gray-600 dark:text-gray-400">•</span>
+                                <span className="flex-col text-gray-600 dark:text-gray-400">
+                                    <p className="mb-4 text-4xl">📚</p>
+                                    <p className="italic">Stories</p>
+                                </span>
                             </div>
                         </div>
                     </div>
@@ -257,7 +255,7 @@ export default function MainPage() {
                     <h2 className="text-3xl font-bold text-gray-800 dark:text-gray-200 mb-8 text-center">
                         Technical Skills
                     </h2>
-                    <div className="bg-white/60 dark:bg-gray-800/60 backdrop-blur-sm rounded-2xl p-8 shadow-lg">
+                    <div className="bg-white/60 dark:bg-gray-800/60 backdrop-blur-sm rounded-2xl p-8 shadow-md ring-1 ring-gray-900/10 dark:ring-blue-400/10">
                         <div className="flex flex-wrap gap-3 justify-center">
                             {skills.map((skill, index) => (
                                 <span
@@ -287,7 +285,7 @@ export default function MainPage() {
                             <div
                                 key={domain.title}
                                 onClick={() => {}}
-                                className="bg-white/60 dark:bg-gray-800/60 backdrop-blur-sm rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
+                                className="bg-white/60 dark:bg-gray-800/60 backdrop-blur-sm rounded-2xl p-6 shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105 ring-1 ring-gray-900/10 dark:ring-blue-400/10 hover:ring-gray-900/30 hover:dark:ring-blue-400/30"
                             >
                                 <div className="text-4xl mb-4 text-center">{domain.icon}</div>
                                 <h3 className="text-xl font-bold text-gray-800 dark:text-gray-200 mb-3 text-center">
