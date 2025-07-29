@@ -107,7 +107,7 @@ export default function MainPage() {
                     />
                 </svg>
             ),
-            link: 'mailto:adinatatan99@gmail.com',
+            link: 'mailto:adinata.softwareengineer@gmail.com',
         },
     ];
 
