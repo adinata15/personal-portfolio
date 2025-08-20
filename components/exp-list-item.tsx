@@ -11,7 +11,14 @@ export type ExpDetails = {
     skills: string[];
 };
 
-export function ListItem({ duration, role, company, company_link, details, skills }: ExpDetails) {
+export function ExpListItem({
+    duration,
+    role,
+    company,
+    company_link,
+    details,
+    skills,
+}: ExpDetails) {
     return (
         <li key={`${duration}-${role}-${company}`} className="mb-12">
             <div className="group relative grid pb-1 transition-all sm:grid-cols-8 sm:gap-8 md:gap-4 lg:hover:!opacity-100 lg:group-hover/list:opacity-50">

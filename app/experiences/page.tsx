@@ -1,6 +1,6 @@
 'use client';
 
-import { ExpDetails, ListItem } from '@/components/list-item';
+import { ExpDetails, ExpListItem } from '@/components/exp-list-item';
 
 const experiences: ExpDetails[] = [
     {
@@ -39,8 +39,8 @@ export default function ExperiencePage() {
                 Experience
             </h1>
             <ol className="group/list inline-block">
-                {experiences.map((experience) => {
-                    return <ListItem {...experience} />;
+                {experiences.map((experience, index) => {
+                    return <ExpListItem key={index} {...experience} />;
                 })}
             </ol>
         </div>
