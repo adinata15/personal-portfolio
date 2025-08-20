@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import './globals.css';
 import { ThemeProvider } from '@/components/theme-provider';
+import { NavBar } from '@/components/navbar';
 
 export const metadata: Metadata = {
     title: "Adi Nata' Portfolio",
@@ -11,7 +12,10 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     return (
         <html lang="en" suppressHydrationWarning>
             <body className="">
-                <ThemeProvider defaultTheme="system">{children}</ThemeProvider>
+                <ThemeProvider defaultTheme="system">
+                    <NavBar />
+                    {children}
+                </ThemeProvider>
             </body>
         </html>
     );
