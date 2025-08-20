@@ -48,6 +48,7 @@ export function NavBar() {
                         {pages.map((page) => {
                             return (
                                 <Link
+                                    key={page.name}
                                     href={page.link}
                                     className="text-gray-600 dark:text-gray-300 hover:text-green-600 dark:hover:text-green-400 transition-colors"
                                 >
@@ -69,7 +70,7 @@ export function NavBar() {
             >
                 {pages.map((page) => {
                     return (
-                        <li key={`${page.name}`} className="w-full flex">
+                        <li key={page.name} className="w-full flex">
                             <Link
                                 className="w-full content-center text-center border-gray-400 m-1 h-10 rounded dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-800"
                                 href={page.link}
