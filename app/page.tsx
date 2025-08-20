@@ -118,8 +118,8 @@ export default function MainPage() {
                 <div className="flex items-center space-x-3">
                     <div className="w-10 h-10 bg-orange-300 rounded-full flex items-center justify-center border-2 border-orange-400 overflow-hidden">
                         <Image
-                            src="/images/alpaca.png"
-                            alt="Alpaca Portrait"
+                            src="/images/personal.jpeg"
+                            alt="Personal Portrait"
                             width={185}
                             height={185}
                         />
@@ -167,8 +167,8 @@ export default function MainPage() {
                     <div className="text-center mb-16">
                         <div className="w-32 h-32 mx-auto mb-8 bg-orange-300 rounded-full flex items-center justify-center border-4 border-orange-400 shadow-lg overflow-hidden">
                             <Image
-                                src="/images/alpaca.png"
-                                alt="Alpaca Portrait"
+                                src="/images/personal.jpeg"
+                                alt="Personal Portrait"
                                 width={185}
                                 height={185}
                             />
@@ -340,8 +340,8 @@ export default function MainPage() {
                     <div className="flex items-center justify-center space-x-3 mb-4">
                         <div className="w-8 h-8 bg-orange-300 rounded-full flex items-center justify-center overflow-hidden">
                             <Image
-                                src="/images/alpaca.png"
-                                alt="Alpaca Portrait"
+                                src="/images/personal.jpeg"
+                                alt="Personal Portrait"
                                 width={185}
                                 height={185}
                             />
