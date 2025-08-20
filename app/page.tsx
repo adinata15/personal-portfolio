@@ -149,7 +149,7 @@ export default function MainPage() {
                         <div className="flex flex-col sm:flex-row gap-4 justify-center">
                             <button
                                 onClick={() => triggerHref('#domains')}
-                                className="px-8 py-3 bg-green-600 text-white rounded-full hover:bg-green-700 dark:bg-green-500 dark:hover:bg-green-600 transition-colors shadow-lg"
+                                className="px-8 py-3 border-2 border-green-600 text-green-600 rounded-full hover:bg-green-600 hover:text-white dark:border-green-400 dark:text-green-400 dark:hover:bg-green-400 dark:hover:text-gray-900 transition-colors"
                             >
                                 View My Work
                             </button>
@@ -234,7 +234,7 @@ export default function MainPage() {
                         Areas of Expertise
                     </h2>
                     <div className="grid md:grid-cols-3 gap-6">
-                        {domains.map((domain, index) => (
+                        {domains.map((domain) => (
                             <div
                                 key={domain.title}
                                 onClick={() => {}}
@@ -250,12 +250,24 @@ export default function MainPage() {
                             </div>
                         ))}
                     </div>
-                    <div className="flex w-full justify-center my-6">
+                    <div className="flex w-full justify-center my-6 gap-6">
                         <button
-                            onClick={() => triggerHref('/resume', true)}
-                            className="px-8 py-3 bg-green-600 text-white rounded-full hover:bg-green-700 dark:bg-green-500 dark:hover:bg-green-600 transition-colors shadow-lg"
+                            onClick={() => triggerHref('/experiences')}
+                            className="px-8 py-3 w-48 border-2 border-green-600 text-green-600 rounded-full hover:bg-green-600 hover:text-white dark:border-green-400 dark:text-green-400 dark:hover:bg-green-400 dark:hover:text-gray-900 transition-colors"
                         >
-                            View Full Resume
+                            View Experiences
+                        </button>
+                        <button
+                            onClick={() => triggerHref('/projects')}
+                            className="px-8 py-3 w-48 border-2 border-green-600 text-green-600 rounded-full hover:bg-green-600 hover:text-white dark:border-green-400 dark:text-green-400 dark:hover:bg-green-400 dark:hover:text-gray-900 transition-colors"
+                        >
+                            View Projects
+                        </button>
+                        <button
+                            onClick={() => triggerHref('/resume')}
+                            className="px-8 py-3 w-48 border-2 border-green-600 text-green-600 rounded-full hover:bg-green-600 hover:text-white dark:border-green-400 dark:text-green-400 dark:hover:bg-green-400 dark:hover:text-gray-900 transition-colors"
+                        >
+                            View Resume
                         </button>
                     </div>
                 </section>
