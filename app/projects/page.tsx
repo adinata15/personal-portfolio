@@ -4,12 +4,20 @@ import { ProjectDetails, ProjectListItem } from '@/components/project-list-item'
 
 const projects: ProjectDetails[] = [
     {
-        duration: 'Mar 2022 - Jun 2022',
         title: 'Laser Tag',
         project_link: 'https://github.com/adinata15/LaserTag',
         details:
-            'Virtual Reality laser tag game with physical handheld gears (gun, vest, glove, phone) for immersive shooting game experience',
+            'A multiplayer laser tag system using Python and C, integrating IoT devices with a real-time game server with secure SSH-tunneled TCP connections',
         skills: ['Python', 'C', 'Arduino', 'Multithreading', 'Networking', 'IoT'],
+        image_path: '/images/laserTag_arch.png',
+    },
+    {
+        title: 'BestFit',
+        project_link: 'https://github.com/adinata15/Orbital_2020',
+        details:
+            'An e-commerce apparel platform with React, Express, MongoDB, Node, AWS S3, and Stripe API with integration with Python sklearn size-recommendation models',
+        skills: ['React', 'MongoDB', 'JavaScript', 'Node', 'AWS S3', 'Python', 'Stripe', 'Heroku'],
+        image_path: '/images/bestfit_logo.png',
     },
 ];
 
