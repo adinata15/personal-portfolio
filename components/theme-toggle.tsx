@@ -1,23 +1,9 @@
 'use client';
 
 import { useTheme } from './theme-provider';
-import { useEffect, useState } from 'react';
 
 export function ThemeToggle() {
     const { theme, setTheme } = useTheme();
-    const [mounted, setMounted] = useState(false);
-
-    useEffect(() => {
-        setMounted(true);
-    }, []);
-
-    if (!mounted) {
-        // return (
-        //     <button className="w-9 h-9 rounded-lg border border-gray-300 dark:border-gray-600 flex items-center justify-center">
-        //         <div className="w-4 h-4 bg-gray-300 dark:bg-gray-600 rounded-full animate-pulse"></div>
-        //     </button>
-        // );
-    }
 
     const toggleTheme = () => {
         setTheme(theme === 'light' ? 'dark' : 'light');
