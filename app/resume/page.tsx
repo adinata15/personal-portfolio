@@ -22,9 +22,9 @@ export default function ResumePage() {
 
     return (
         <div className="w-screen h-screen overflow-hidden">
-            <embed
+            <object
                 id="pdfResume"
-                src="/pdfs/resume.pdf"
+                data="/pdfs/resume.pdf"
                 type="application/pdf"
                 className="w-full h-full border-none"
             />

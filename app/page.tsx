@@ -263,12 +263,13 @@ export default function MainPage() {
                         >
                             View Projects
                         </button>
-                        <button
-                            onClick={() => triggerHref('/resume')}
-                            className="px-8 py-3 w-48 border-2 border-green-600 text-green-600 rounded-full hover:bg-green-600 hover:text-white dark:border-green-400 dark:text-green-400 dark:hover:bg-green-400 dark:hover:text-gray-900 transition-colors"
+                        <a
+                            href="/pdfs/resume.pdf"
+                            download="AdiNata's resume.pdf"
+                            className="px-8 py-3 w-48 text-center border-2 border-green-600 text-green-600 rounded-full hover:bg-green-600 hover:text-white dark:border-green-400 dark:text-green-400 dark:hover:bg-green-400 dark:hover:text-gray-900 transition-colors"
                         >
                             View Resume
-                        </button>
+                        </a>
                     </div>
                 </section>
 
