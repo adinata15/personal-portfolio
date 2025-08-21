@@ -250,7 +250,7 @@ export default function MainPage() {
                             </div>
                         ))}
                     </div>
-                    <div className="flex w-full justify-center my-6 gap-6">
+                    <div className="grid w-full place-items-center my-6 grid-col-1 md:grid-cols-3 gap-6">
                         <button
                             onClick={() => triggerHref('/experiences')}
                             className="px-8 py-3 w-48 border-2 border-green-600 text-green-600 rounded-full hover:bg-green-600 hover:text-white dark:border-green-400 dark:text-green-400 dark:hover:bg-green-400 dark:hover:text-gray-900 transition-colors"
@@ -303,7 +303,7 @@ export default function MainPage() {
             <footer className="bg-gray-800 dark:bg-gray-900 text-white py-8 px-8 mt-20">
                 <div className="max-w-6xl mx-auto text-center">
                     <div className="flex items-center justify-center space-x-3 mb-4">
-                        <div className="w-8 h-8 bg-orange-300 rounded-full flex items-center justify-center overflow-hidden">
+                        <div className="w-8 h-8 min-w-8 bg-orange-300 rounded-full flex items-center justify-center overflow-hidden">
                             <Image
                                 src="/images/personal.jpeg"
                                 alt="Personal Portrait"
