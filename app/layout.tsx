@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import './globals.css';
 import { ThemeProvider } from '@/components/theme-provider';
 import { NavBar } from '@/components/navbar';
+import { Footer } from '@/components/footer';
 
 export const metadata: Metadata = {
     title: "Adi Nata' Portfolio",
@@ -15,6 +16,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
                 <ThemeProvider defaultTheme="system">
                     <NavBar />
                     {children}
+                    <Footer />
                 </ThemeProvider>
             </body>
         </html>
