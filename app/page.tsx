@@ -3,13 +3,20 @@
 import { useState, useEffect } from 'react';
 import { triggerHref } from '@/lib/utils';
 import Image from 'next/image';
+import { Notification } from '@/components/notification';
 
 export default function MainPage() {
     const [isVisible, setIsVisible] = useState(false);
+    const [isNotificationOn, setNotificationOn] = useState(false);
 
     useEffect(() => {
         setIsVisible(true);
     }, []);
+
+    const showNotification = () => {
+        setNotificationOn(true);
+        setTimeout(() => setNotificationOn(false), 5000);
+    };
 
     const skills = [
         'C',
@@ -112,6 +119,9 @@ export default function MainPage() {
 
     return (
         <div className="min-h-screen bg-gradient-to-br from-green-50 via-blue-50 to-purple-50 dark:from-green-950 dark:via-blue-950 dark:to-purple-950">
+            {/* Floating Notification Section */}
+            <Notification isOpen={isNotificationOn} message="Resume download started" />
+
             {/* Hero Section */}
             <main className="max-w-6xl mx-auto px-8 py-16">
                 <div
@@ -213,13 +223,12 @@ export default function MainPage() {
                             {skills.map((skill, index) => (
                                 <span
                                     key={skill}
-                                    className={`px-4 py-2 rounded-full text-white font-semibold shadow-md transition-all duration-300 hover:scale-105 ${
-                                        index % 3 === 0
-                                            ? 'bg-blue-500 hover:bg-blue-600'
-                                            : index % 3 === 1
-                                              ? 'bg-green-500 hover:bg-green-600'
-                                              : 'bg-purple-500 hover:bg-purple-600'
-                                    }`}
+                                    className={`px-4 py-2 rounded-full text-white font-semibold shadow-md transition-all duration-300 hover:scale-105 ${index % 3 === 0
+                                        ? 'bg-blue-500 hover:bg-blue-600'
+                                        : index % 3 === 1
+                                            ? 'bg-green-500 hover:bg-green-600'
+                                            : 'bg-purple-500 hover:bg-purple-600'
+                                        }`}
                                 >
                                     {skill}
                                 </span>
@@ -237,7 +246,7 @@ export default function MainPage() {
                         {domains.map((domain) => (
                             <div
                                 key={domain.title}
-                                onClick={() => {}}
+                                onClick={() => { }}
                                 className="bg-white/60 dark:bg-gray-800/60 backdrop-blur-sm rounded-2xl p-6 shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105 ring-1 ring-gray-900/10 dark:ring-blue-400/10 hover:ring-gray-900/30 hover:dark:ring-blue-400/30"
                             >
                                 <div className="text-4xl mb-4 text-center">{domain.icon}</div>
@@ -266,6 +275,7 @@ export default function MainPage() {
                         <a
                             href="/pdfs/resume.pdf"
                             download="AdiNata's resume.pdf"
+                            onClick={showNotification}
                             className="px-8 py-3 w-48 text-center border-2 border-green-600 text-green-600 rounded-full hover:bg-green-600 hover:text-white dark:border-green-400 dark:text-green-400 dark:hover:bg-green-400 dark:hover:text-gray-900 transition-colors"
                         >
                             View Resume
