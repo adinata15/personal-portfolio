@@ -128,9 +128,9 @@ export default function MainPage() {
                     className={`transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
                 >
                     <div className="text-center mb-16">
-                        <div className="w-32 h-32 mx-auto mb-8 bg-orange-300 rounded-full flex items-center justify-center border-4 border-orange-400 shadow-lg overflow-hidden">
+                        <div className="w-32 h-32 mx-auto mb-8 bg-gray-200 rounded-full flex items-center justify-center border-4 border-orange-400 shadow-lg overflow-hidden">
                             <Image
-                                src="/images/personal.jpeg"
+                                src="/images/personal.png"
                                 alt="Personal Portrait"
                                 width={185}
                                 height={185}
@@ -223,12 +223,13 @@ export default function MainPage() {
                             {skills.map((skill, index) => (
                                 <span
                                     key={skill}
-                                    className={`px-4 py-2 rounded-full text-white font-semibold shadow-md transition-all duration-300 hover:scale-105 ${index % 3 === 0
-                                        ? 'bg-blue-500 hover:bg-blue-600'
-                                        : index % 3 === 1
-                                            ? 'bg-green-500 hover:bg-green-600'
-                                            : 'bg-purple-500 hover:bg-purple-600'
-                                        }`}
+                                    className={`px-4 py-2 rounded-full text-white font-semibold shadow-md transition-all duration-300 hover:scale-105 ${
+                                        index % 3 === 0
+                                            ? 'bg-blue-500 hover:bg-blue-600'
+                                            : index % 3 === 1
+                                              ? 'bg-green-500 hover:bg-green-600'
+                                              : 'bg-purple-500 hover:bg-purple-600'
+                                    }`}
                                 >
                                     {skill}
                                 </span>
@@ -246,7 +247,7 @@ export default function MainPage() {
                         {domains.map((domain) => (
                             <div
                                 key={domain.title}
-                                onClick={() => { }}
+                                onClick={() => {}}
                                 className="bg-white/60 dark:bg-gray-800/60 backdrop-blur-sm rounded-2xl p-6 shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105 ring-1 ring-gray-900/10 dark:ring-blue-400/10 hover:ring-gray-900/30 hover:dark:ring-blue-400/30"
                             >
                                 <div className="text-4xl mb-4 text-center">{domain.icon}</div>
@@ -309,28 +310,6 @@ export default function MainPage() {
                     </div>
                 </section>
             </main>
-
-            {/* Footer */}
-            <footer className="bg-gray-800 dark:bg-gray-900 text-white py-8 px-8 mt-20">
-                <div className="max-w-6xl mx-auto text-center">
-                    <div className="flex items-center justify-center space-x-3 mb-4">
-                        <div className="w-8 h-8 min-w-8 bg-orange-300 rounded-full flex items-center justify-center overflow-hidden">
-                            <Image
-                                src="/images/personal.jpeg"
-                                alt="Personal Portrait"
-                                width={185}
-                                height={185}
-                            />
-                        </div>
-                        <span className="text-lg font-semibold">
-                            Created with Next and Tailwind by Adi Nata
-                        </span>
-                    </div>
-                    <p className="text-gray-400 dark:text-gray-500">
-                        Software Engineer • Nature Enthusiast • Bookworm
-                    </p>
-                </div>
-            </footer>
         </div>
     );
 }

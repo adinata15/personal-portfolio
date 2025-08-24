@@ -35,9 +35,9 @@ export function NavBar() {
         <nav className="flex-col backdrop-blur-sm bg-white/70 dark:bg-gray-900/70">
             <section className="py-6 px-8 flex justify-between items-center">
                 <Link href="/" className="flex items-center space-x-3">
-                    <div className="w-10 h-10 bg-orange-300 rounded-full flex items-center justify-center border-2 border-orange-400 overflow-hidden">
+                    <div className="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center border-2 border-orange-400 overflow-hidden">
                         <Image
-                            src="/images/personal.jpeg"
+                            src="/images/personal.png"
                             alt="Personal Portrait"
                             width={185}
                             height={185}
