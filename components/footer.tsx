@@ -8,7 +8,7 @@ export function Footer() {
                 <div className="flex items-center justify-center space-x-3 mb-4">
                     <div className="w-8 h-8 min-w-8 bg-orange-300 rounded-full flex items-center justify-center overflow-hidden">
                         <Image
-                            src="/images/personal.jpeg"
+                            src="/images/personal.png"
                             alt="Personal Portrait"
                             width={185}
                             height={185}
