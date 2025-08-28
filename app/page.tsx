@@ -4,26 +4,24 @@ import { useState, useEffect } from 'react';
 import { triggerHref } from '@/lib/utils';
 import Image from 'next/image';
 import { Notification } from '@/components/notification';
-import { MouseEffect } from '@/components/mouse-effect';
 
 export default function MainPage() {
     const [isVisible, setIsVisible] = useState(false);
     const [isNotificationOn, setNotificationOn] = useState(false);
-    const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
 
     useEffect(() => {
         setIsVisible(true);
 
-        const handleMouseMove = (event: MouseEvent) => {
-            setMousePos({ x: event.clientX, y: event.clientY });
-        };
+        // const handleMouseMove = (event: MouseEvent) => {
+        //     setMousePos({ x: event.clientX, y: event.clientY });
+        // };
 
-        window.addEventListener('mousemove', handleMouseMove);
+        // window.addEventListener('mousemove', handleMouseMove);
 
-        // Clean up the event listener when the component unmounts
-        return () => {
-            window.removeEventListener('mousemove', handleMouseMove);
-        };
+        // // Clean up the event listener when the component unmounts
+        // return () => {
+        //     window.removeEventListener('mousemove', handleMouseMove);
+        // };
     }, []); // Empty dependency array ensures the effect runs only once on mount and unmount
 
     const showNotification = () => {
@@ -131,7 +129,7 @@ export default function MainPage() {
     ];
 
     return (
-        <div className="min-h-screen bg-blue-50 dark:bg-blue-950">
+        <div className="min-h-screen bg-gradient-to-br from-green-50 via-blue-50 to-purple-50 dark:from-green-950 dark:via-blue-950 dark:to-purple-950">
             {/* Floating Notification Section */}
             <Notification isOpen={isNotificationOn} message="Resume download started" />
 
@@ -322,9 +320,6 @@ export default function MainPage() {
                         </div>
                     </div>
                 </section>
-
-                {/* Mouse radial effect */}
-                <MouseEffect {...mousePos} />
             </main>
         </div>
     );

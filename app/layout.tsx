@@ -3,6 +3,7 @@ import './globals.css';
 import { ThemeProvider } from '@/components/theme-provider';
 import { NavBar } from '@/components/navbar';
 import { Footer } from '@/components/footer';
+import { MouseEffect } from '@/components/mouse-effect';
 
 export const metadata: Metadata = {
     title: "Adi Nata' Portfolio",
@@ -14,6 +15,8 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <html lang="en" suppressHydrationWarning>
             <body className="">
                 <ThemeProvider defaultTheme="system">
+                    {/* Mouse radial effect */}
+                    <MouseEffect />
                     <NavBar />
                     {children}
                     <Footer />
