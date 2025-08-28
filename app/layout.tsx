@@ -15,7 +15,6 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <html lang="en" suppressHydrationWarning>
             <body className="">
                 <ThemeProvider defaultTheme="system">
-                    {/* Mouse radial effect */}
                     <MouseEffect />
                     <NavBar />
                     {children}

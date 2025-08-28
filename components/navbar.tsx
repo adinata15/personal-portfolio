@@ -78,6 +78,7 @@ export function NavBar() {
                             <Link
                                 className="w-full content-center text-center border-gray-400 m-1 h-10 rounded dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-600 dark:text-gray-300 hover:text-green-600 dark:hover:text-green-400 transition-colors"
                                 href={page.link}
+                                onClick={() => setExpanded(false)}
                             >
                                 {page.name}
                             </Link>
