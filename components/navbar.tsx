@@ -3,7 +3,7 @@
 import { ThemeToggle } from '@/components/theme-toggle';
 import Image from 'next/image';
 import Link from 'next/link';
-import { HamburgerMenu } from './hamburger_menu';
+import { HamburgerMenu } from './hamburger-menu';
 import { useState } from 'react';
 
 const pages = [
