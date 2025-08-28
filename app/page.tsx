@@ -295,7 +295,7 @@ export default function MainPage() {
                         </p>
                         <div
                             aria-label="social-media"
-                            className="flex justify-center item-center space-x-4 h-24"
+                            className="grid grid-rows-2 grid-cols-2 gap-y-10 sm:grid-rows-1 sm:grid-cols-4  place-items-center h-24"
                         >
                             {socials.map((social) => (
                                 <button
