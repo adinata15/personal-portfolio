@@ -19,6 +19,13 @@ const projects: ProjectDetails[] = [
         skills: ['React', 'MongoDB', 'JavaScript', 'Node', 'AWS S3', 'Python', 'Stripe', 'Heroku'],
         image_path: '/images/bestfit_logo.png',
     },
+    {
+        title: 'Personal Portfolio',
+        project_link: 'https://github.com/adinata15/personal-portfolio',
+        details: 'Personal portfolio website',
+        skills: ['NextJS', 'React', 'Tailwind', 'Vercel'],
+        image_path: '/images/personal_portfolio.png',
+    },
 ];
 
 export default function ProjectPage() {
