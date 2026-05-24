@@ -4,7 +4,16 @@ import { ExpDetails, ExpListItem } from '@/components/exp-list-item';
 
 const experiences: ExpDetails[] = [
     {
-        duration: '2024 - Present',
+        duration: '2026 - Present',
+        role: 'Senior Research Engineer',
+        company: 'A*STAR Singapore Institute of Manufacturing Technology',
+        company_link: 'https://www.a-star.edu.sg/simtech',
+        details:
+            'Architect and develop software solutions for Singapore labs and manufacturing companies companies',
+        skills: ['Python', '.NET', 'Microservices'],
+    },
+    {
+        duration: '2024 - 2025',
         role: 'Software Engineer',
         company: 'Vital Thin Film Materials',
         company_link: 'http://www.vitaltfm.com/',
