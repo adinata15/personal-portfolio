@@ -4,6 +4,14 @@ import { ProjectDetails, ProjectListItem } from '@/components/project-list-item'
 
 const projects: ProjectDetails[] = [
     {
+        title: 'bg-remover',
+        project_link: 'https://github.com/adinata15/bg_remover',
+        details:
+            'Local CLI tools to convert images to PNG with alpha, detect subject masks, and cut out backgrounds using U²-Net via rembg',
+        skills: ['Python', 'rembg', 'ONNX'],
+        image_path: '/images/bgremover_workflow.png',
+    },
+    {
         title: 'Laser Tag',
         project_link: 'https://github.com/adinata15/LaserTag',
         details:
