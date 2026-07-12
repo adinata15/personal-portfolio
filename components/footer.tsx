@@ -6,12 +6,7 @@ export function Footer() {
             <div className="max-w-6xl mx-auto text-center">
                 <div className="flex items-center justify-center space-x-3 mb-4">
                     <div className="w-8 h-8 min-w-8 bg-gray-200 border-2 border-orange-400 rounded-full flex items-center justify-center overflow-hidden">
-                        <Image
-                            src="/images/personal.png"
-                            alt=""
-                            width={32}
-                            height={32}
-                        />
+                        <Image src="/images/personal.png" alt="" width={32} height={32} />
                     </div>
                     <span className="text-lg font-semibold">
                         Created with Next and Tailwind by Adi Nata

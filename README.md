@@ -7,7 +7,7 @@ Next.js App Router portfolio for projects, experience, and resume.
 - Next.js 16 (App Router, React Server Components)
 - TypeScript
 - Tailwind CSS
-- Deployed with a standalone Next.js output (Docker-friendly)
+- Standalone Next.js output (`output: 'standalone'`) for self-hosted deploys
 
 ## Getting started
 
@@ -20,13 +20,15 @@ Open [http://localhost:3000](http://localhost:3000).
 
 ## Scripts
 
-| Command | Description |
-|---------|-------------|
-| `npm run dev` | Start development server |
-| `npm run build` | Production build |
-| `npm run start` | Serve production build |
-| `npm run lint` | Run ESLint (`eslint .`) |
-| `npm run format` | Format with Prettier |
+| Command                | Description                       |
+| ---------------------- | --------------------------------- |
+| `npm run dev`          | Start development server          |
+| `npm run build`        | Production build                  |
+| `npm run start`        | Serve production build            |
+| `npm run lint`         | Run ESLint (`eslint .`)           |
+| `npm run typecheck`    | TypeScript check (`tsc --noEmit`) |
+| `npm run format`       | Format with Prettier              |
+| `npm run format:check` | Check Prettier formatting         |
 
 ## Environment
 

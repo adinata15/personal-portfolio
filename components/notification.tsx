@@ -5,7 +5,7 @@ export function Notification({ message, isOpen }: { message: string; isOpen: boo
 
     return (
         <div
-            className="flex fixed top-4 z-50 min-w-64 w-max max-w-[90vw] -translate-x-1/2 left-1/2 items-center rounded bg-teal-100 text-teal-900 text-sm font-bold px-4 py-3 shadow-md"
+            className="flex fixed top-4 z-50 min-w-64 w-max max-w-[90vw] -translate-x-1/2 left-1/2 items-center rounded bg-green-100 text-green-900 dark:bg-green-900 dark:text-green-100 text-sm font-bold px-4 py-3 shadow-md"
             role="alert"
         >
             <svg

@@ -9,8 +9,7 @@ import {
     useSyncExternalStore,
 } from 'react';
 
-type Theme = 'dark' | 'light' | 'system';
-type ResolvedTheme = 'dark' | 'light';
+type Theme = 'dark' | 'light';
 
 type ThemeProviderProps = {
     children: React.ReactNode;
@@ -20,7 +19,7 @@ type ThemeProviderProps = {
 
 type ThemeProviderState = {
     theme: Theme;
-    resolvedTheme: ResolvedTheme;
+    resolvedTheme: Theme;
     setTheme: (theme: Theme) => void;
 };
 
@@ -44,17 +43,11 @@ function subscribeTheme(onStoreChange: () => void) {
     };
 }
 
-function getSystemTheme(): ResolvedTheme {
+function getSystemTheme(): Theme {
     return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
 }
 
-function subscribeSystemTheme(onStoreChange: () => void) {
-    const media = window.matchMedia('(prefers-color-scheme: dark)');
-    media.addEventListener('change', onStoreChange);
-    return () => media.removeEventListener('change', onStoreChange);
-}
-
-function applyTheme(resolved: ResolvedTheme) {
+function applyTheme(resolved: Theme) {
     const root = window.document.documentElement;
     root.classList.remove('light', 'dark');
     root.classList.add(resolved);
@@ -63,7 +56,8 @@ function applyTheme(resolved: ResolvedTheme) {
 function readStoredTheme(storageKey: string, fallback: Theme): Theme {
     try {
         const stored = localStorage.getItem(storageKey);
-        if (stored === 'light' || stored === 'dark' || stored === 'system') return stored;
+        if (stored === 'light' || stored === 'dark') return stored;
+        if (stored === 'system' || stored === null) return getSystemTheme();
     } catch {
         /* ignore */
     }
@@ -72,7 +66,7 @@ function readStoredTheme(storageKey: string, fallback: Theme): Theme {
 
 export function ThemeProvider({
     children,
-    defaultTheme = 'system',
+    defaultTheme = 'dark',
     storageKey = 'portfolio-theme',
 }: ThemeProviderProps) {
     const theme = useSyncExternalStore(
@@ -81,34 +75,25 @@ export function ThemeProvider({
         () => defaultTheme,
     );
 
-    const systemTheme = useSyncExternalStore(
-        subscribeSystemTheme,
-        getSystemTheme,
-        (): ResolvedTheme => 'light',
-    );
-
-    const resolvedTheme: ResolvedTheme = theme === 'system' ? systemTheme : theme;
-
     useEffect(() => {
-        applyTheme(resolvedTheme);
-    }, [resolvedTheme]);
+        applyTheme(theme);
+    }, [theme]);
 
     const setTheme = useCallback(
         (next: Theme) => {
-            localStorage.setItem(storageKey, next);
+            try {
+                localStorage.setItem(storageKey, next);
+            } catch {
+                /* ignore quota / private mode failures */
+            }
             emitThemeChange();
         },
         [storageKey],
     );
 
-    const value = useMemo(
-        () => ({ theme, resolvedTheme, setTheme }),
-        [theme, resolvedTheme, setTheme],
-    );
+    const value = useMemo(() => ({ theme, resolvedTheme: theme, setTheme }), [theme, setTheme]);
 
-    return (
-        <ThemeProviderContext.Provider value={value}>{children}</ThemeProviderContext.Provider>
-    );
+    return <ThemeProviderContext.Provider value={value}>{children}</ThemeProviderContext.Provider>;
 }
 
 export const useTheme = () => {

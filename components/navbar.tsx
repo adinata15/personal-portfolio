@@ -5,8 +5,9 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { HamburgerMenu } from './hamburger-menu';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { cn } from '@/lib/utils';
+import { focusRing } from '@/lib/styles';
 
 const pages = [
     { name: 'Home', link: '/' },
@@ -15,16 +16,49 @@ const pages = [
     { name: 'Resume', link: '/resume' },
 ];
 
-const focusRing =
-    'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:ring-offset-2';
-
 export function NavBar() {
     const [isExpanded, setExpanded] = useState(false);
     const pathname = usePathname();
     const menuId = 'mobile-nav-menu';
+    const menuButtonRef = useRef<HTMLButtonElement>(null);
+    const firstLinkRef = useRef<HTMLAnchorElement>(null);
+    const wasExpandedRef = useRef(false);
+
+    useEffect(() => {
+        if (!isExpanded) return;
+
+        const onKeyDown = (event: KeyboardEvent) => {
+            if (event.key === 'Escape') {
+                setExpanded(false);
+                menuButtonRef.current?.focus();
+            }
+        };
+
+        window.addEventListener('keydown', onKeyDown);
+        return () => window.removeEventListener('keydown', onKeyDown);
+    }, [isExpanded]);
+
+    useEffect(() => {
+        const media = window.matchMedia('(min-width: 768px)');
+        const onChange = () => {
+            if (media.matches) setExpanded(false);
+        };
+        media.addEventListener('change', onChange);
+        return () => media.removeEventListener('change', onChange);
+    }, []);
+
+    useEffect(() => {
+        if (isExpanded && !wasExpandedRef.current) {
+            firstLinkRef.current?.focus();
+        }
+        wasExpandedRef.current = isExpanded;
+    }, [isExpanded]);
 
     return (
-        <nav className="flex-col backdrop-blur-sm bg-white/70 dark:bg-gray-900/70" aria-label="Primary">
+        <nav
+            className="sticky top-0 z-40 flex-col backdrop-blur-sm bg-white/70 dark:bg-gray-900/70"
+            aria-label="Primary"
+        >
             <div className="py-6 px-8 flex justify-between items-center">
                 <Link
                     href="/"
@@ -59,7 +93,8 @@ export function NavBar() {
                                     className={cn(
                                         'text-gray-600 dark:text-gray-300 hover:text-green-600 dark:hover:text-green-400 transition-colors rounded-sm',
                                         focusRing,
-                                        isActive && 'text-green-600 dark:text-green-400 font-medium',
+                                        isActive &&
+                                            'text-green-600 dark:text-green-400 font-medium',
                                     )}
                                 >
                                     {page.name}
@@ -70,6 +105,7 @@ export function NavBar() {
                     <ThemeToggle />
                     <div className="md:hidden">
                         <HamburgerMenu
+                            ref={menuButtonRef}
                             expanded={isExpanded}
                             setExpanded={setExpanded}
                             controlsId={menuId}
@@ -82,12 +118,13 @@ export function NavBar() {
                 hidden={!isExpanded}
                 className={isExpanded ? 'flex flex-col w-full md:hidden' : undefined}
             >
-                {pages.map((page) => {
+                {pages.map((page, index) => {
                     const isActive =
                         page.link === '/' ? pathname === '/' : pathname.startsWith(page.link);
                     return (
                         <li key={page.name} className="w-full flex">
                             <Link
+                                ref={index === 0 ? firstLinkRef : undefined}
                                 className={cn(
                                     'w-full text-center border border-transparent m-1 h-10 rounded hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-600 dark:text-gray-300 hover:text-green-600 dark:hover:text-green-400 transition-colors inline-flex items-center justify-center',
                                     focusRing,

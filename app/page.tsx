@@ -2,8 +2,9 @@ import Image from 'next/image';
 import Link from 'next/link';
 import type { Metadata } from 'next';
 import { domains, skills } from '@/data/home';
-import { ResumeDownloadButton } from '@/components/resume-download-button';
 import { SocialLinks } from '@/components/social-links';
+import { ctaClass } from '@/lib/styles';
+import { cn } from '@/lib/utils';
 
 export const metadata: Metadata = {
     title: 'Home',
@@ -11,13 +12,10 @@ export const metadata: Metadata = {
         'Adi Nata — Software Engineer building web, IoT, and embedded systems. Explore projects, experience, and resume.',
 };
 
-const ctaClass =
-    'px-8 py-3 text-center border-2 border-green-600 text-green-600 rounded-full hover:bg-green-600 hover:text-white dark:border-green-400 dark:text-green-400 dark:hover:bg-green-400 dark:hover:text-gray-900 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:ring-offset-2';
-
 export default function MainPage() {
     return (
         <div className="min-h-screen bg-gradient-to-br from-green-50 via-blue-50 to-purple-50 dark:from-green-950 dark:via-blue-950 dark:to-purple-950">
-            <main className="max-w-6xl mx-auto px-8 py-16">
+            <main id="main-content" className="max-w-6xl mx-auto px-8 py-16">
                 <div className="hero-enter text-center mb-16">
                     <div className="w-32 h-32 mx-auto mb-8 bg-gray-200 rounded-full flex items-center justify-center border-4 border-orange-400 shadow-lg overflow-hidden">
                         <Image
@@ -85,7 +83,10 @@ export default function MainPage() {
                                     </p>
                                     <p className="italic">Technology</p>
                                 </span>
-                                <span className="text-gray-600 dark:text-gray-400" aria-hidden="true">
+                                <span
+                                    className="text-gray-600 dark:text-gray-400"
+                                    aria-hidden="true"
+                                >
                                     •
                                 </span>
                                 <span className="flex-col text-gray-600 dark:text-gray-400">
@@ -94,7 +95,10 @@ export default function MainPage() {
                                     </p>
                                     <p className="italic">Nature</p>
                                 </span>
-                                <span className="text-gray-600 dark:text-gray-400" aria-hidden="true">
+                                <span
+                                    className="text-gray-600 dark:text-gray-400"
+                                    aria-hidden="true"
+                                >
                                     •
                                 </span>
                                 <span className="flex-col text-gray-600 dark:text-gray-400">
@@ -120,7 +124,7 @@ export default function MainPage() {
                             {skills.map((skill, index) => (
                                 <li key={skill}>
                                     <span
-                                        className={`inline-block px-4 py-2 rounded-full text-white font-semibold shadow-md transition-all duration-300 hover:scale-105 ${
+                                        className={`inline-block px-4 py-2 rounded-full text-white font-semibold shadow-md transition-all duration-300 hover:scale-105 motion-reduce:hover:scale-100 ${
                                             index % 3 === 0
                                                 ? 'bg-blue-500 hover:bg-blue-600'
                                                 : index % 3 === 1
@@ -159,13 +163,15 @@ export default function MainPage() {
                         ))}
                     </div>
                     <div className="grid w-full place-items-center my-6 grid-cols-1 md:grid-cols-3 gap-6">
-                        <Link href="/experiences" className={`${ctaClass} w-48`}>
+                        <Link href="/experiences" className={cn(ctaClass, 'w-48')}>
                             View Experiences
                         </Link>
-                        <Link href="/projects" className={`${ctaClass} w-48`}>
+                        <Link href="/projects" className={cn(ctaClass, 'w-48')}>
                             View Projects
                         </Link>
-                        <ResumeDownloadButton />
+                        <Link href="/resume" className={cn(ctaClass, 'w-48')}>
+                            View Resume
+                        </Link>
                     </div>
                 </section>
 

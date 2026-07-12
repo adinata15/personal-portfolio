@@ -1,25 +1,24 @@
 'use client';
 
 import { useTheme } from './theme-provider';
-
-const focusRing =
-    'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:ring-offset-2';
+import { focusRing } from '@/lib/styles';
+import { cn } from '@/lib/utils';
 
 export function ThemeToggle() {
-    const { resolvedTheme, setTheme } = useTheme();
-
-    const toggleTheme = () => {
-        setTheme(resolvedTheme === 'light' ? 'dark' : 'light');
-    };
+    const { theme, setTheme } = useTheme();
+    const nextTheme = theme === 'light' ? 'dark' : 'light';
 
     return (
         <button
             type="button"
-            onClick={toggleTheme}
-            className={`w-9 h-9 rounded-lg border border-gray-300 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors flex items-center justify-center ${focusRing}`}
-            aria-label="Toggle theme"
+            onClick={() => setTheme(nextTheme)}
+            className={cn(
+                'w-9 h-9 rounded-lg border border-gray-300 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors flex items-center justify-center',
+                focusRing,
+            )}
+            aria-label={nextTheme === 'dark' ? 'Switch to dark theme' : 'Switch to light theme'}
         >
-            {resolvedTheme === 'light' ? (
+            {theme === 'light' ? (
                 <svg
                     className="w-4 h-4 text-gray-600 dark:text-gray-400"
                     fill="none"

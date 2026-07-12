@@ -8,7 +8,7 @@ export type ProjectDetails = {
 
 export const projects: ProjectDetails[] = [
     {
-        title: 'bg-remover',
+        title: 'Background Remover',
         project_link: 'https://github.com/adinata15/bg_remover',
         details:
             'Local CLI tools to convert images to PNG with alpha, detect subject masks, and cut out backgrounds using U²-Net via rembg',
