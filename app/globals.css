@@ -18,6 +18,18 @@
     }
 }
 
+@media (prefers-reduced-motion: reduce) {
+    :root {
+        scroll-behavior: auto;
+    }
+
+    .hero-enter {
+        animation: none !important;
+        opacity: 1 !important;
+        transform: none !important;
+    }
+}
+
 @layer utilities {
     .text-balance {
         text-wrap: balance;
@@ -86,5 +98,22 @@
     }
     body {
         @apply bg-background text-foreground;
+    }
+}
+
+@layer components {
+    .hero-enter {
+        animation: hero-fade 0.8s ease-out both;
+    }
+}
+
+@keyframes hero-fade {
+    from {
+        opacity: 0;
+        transform: translateY(1.5rem);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
 }

@@ -1,57 +1,27 @@
-'use client';
+import type { Metadata } from 'next';
+import { ExpListItem } from '@/components/exp-list-item';
+import { experiences } from '@/data/experiences';
 
-import { ExpDetails, ExpListItem } from '@/components/exp-list-item';
-
-const experiences: ExpDetails[] = [
-    {
-        duration: '2026 - Present',
-        role: 'Senior Research Engineer',
-        company: 'A*STAR Singapore Institute of Manufacturing Technology',
-        company_link: 'https://www.a-star.edu.sg/simtech',
-        details:
-            'Architect and develop software solutions for Singapore labs and manufacturing companies companies',
-        skills: ['Python', '.NET', 'Microservices'],
-    },
-    {
-        duration: '2024 - 2025',
-        role: 'Software Engineer',
-        company: 'Vital Thin Film Materials',
-        company_link: 'http://www.vitaltfm.com/',
-        details:
-            'Set up and configure complete IT infrastructure with Meraki network and Dell servers for the Malaysia plant',
-        skills: ['Server Administration', 'Linux', 'C++'],
-    },
-    {
-        duration: '2023 - 2024',
-        role: 'Embedded Software Engineer',
-        company: 'Continental Automotive',
-        company_link: 'https://www.continental-automotive.com/',
-        details:
-            'Develop communications API between embedded car modules and server via HTTP and MQTT connection in C and C++ fulfilling ASPICE standard',
-        skills: ['C', 'C++'],
-    },
-    {
-        duration: '2021 - 2022',
-        role: 'Business Analyst Intern',
-        company: 'Workforce Optimizer',
-        company_link: 'https://workforceoptimizer.com/',
-        details:
-            'Create API to predict manpower demand for upcoming date in a certain location based on past data using LSTM model in Python',
-        skills: ['Python', 'Tensorflow', 'Pandas'],
-    },
-];
+export const metadata: Metadata = {
+    title: 'Experience',
+    description:
+        'Professional experience of Adi Nata — research engineering, embedded software, and infrastructure roles.',
+};
 
 export default function ExperiencePage() {
     return (
-        <div className="flex-col min-h-screen py-8 px-10 bg-gradient-to-br from-green-50 via-blue-50 to-purple-50 dark:from-green-950 dark:via-blue-950 dark:to-purple-950">
+        <main className="flex-col min-h-screen py-8 px-10 bg-gradient-to-br from-green-50 via-blue-50 to-purple-50 dark:from-green-950 dark:via-blue-950 dark:to-purple-950">
             <h1 className="text-5xl mb-20 font-bold text-gray-800 dark:text-gray-200 text-center">
                 Experience
             </h1>
-            <ol className="group/list inline-block">
-                {experiences.map((experience, index) => {
-                    return <ExpListItem key={index} {...experience} />;
-                })}
+            <ol className="group/list block w-full">
+                {experiences.map((experience) => (
+                    <ExpListItem
+                        key={`${experience.duration}-${experience.role}`}
+                        {...experience}
+                    />
+                ))}
             </ol>
-        </div>
+        </main>
     );
 }

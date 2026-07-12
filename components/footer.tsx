@@ -1,4 +1,3 @@
-'use client';
 import Image from 'next/image';
 
 export function Footer() {
@@ -9,9 +8,9 @@ export function Footer() {
                     <div className="w-8 h-8 min-w-8 bg-gray-200 border-2 border-orange-400 rounded-full flex items-center justify-center overflow-hidden">
                         <Image
                             src="/images/personal.png"
-                            alt="Personal Portrait"
-                            width={185}
-                            height={185}
+                            alt=""
+                            width={32}
+                            height={32}
                         />
                     </div>
                     <span className="text-lg font-semibold">

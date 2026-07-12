@@ -1,52 +1,24 @@
-'use client';
+import type { Metadata } from 'next';
+import { ProjectListItem } from '@/components/project-list-item';
+import { projects } from '@/data/projects';
 
-import { ProjectDetails, ProjectListItem } from '@/components/project-list-item';
-
-const projects: ProjectDetails[] = [
-    {
-        title: 'bg-remover',
-        project_link: 'https://github.com/adinata15/bg_remover',
-        details:
-            'Local CLI tools to convert images to PNG with alpha, detect subject masks, and cut out backgrounds using U²-Net via rembg',
-        skills: ['Python', 'rembg', 'ONNX'],
-        image_path: '/images/bgremover_workflow.png',
-    },
-    {
-        title: 'Laser Tag',
-        project_link: 'https://github.com/adinata15/LaserTag',
-        details:
-            'A multiplayer laser tag system using Python and C, integrating IoT devices with a real-time game server with secure SSH-tunneled TCP connections',
-        skills: ['Python', 'C', 'Arduino', 'Multithreading', 'Networking', 'IoT'],
-        image_path: '/images/laserTag_arch.png',
-    },
-    {
-        title: 'BestFit',
-        project_link: 'https://github.com/adinata15/Orbital_2020',
-        details:
-            'An e-commerce apparel platform with React, Express, MongoDB, Node, AWS S3, and Stripe API with integration with Python sklearn size-recommendation models',
-        skills: ['React', 'MongoDB', 'JavaScript', 'Node', 'AWS S3', 'Python', 'Stripe', 'Heroku'],
-        image_path: '/images/bestfit_logo.png',
-    },
-    {
-        title: 'Personal Portfolio',
-        project_link: 'https://github.com/adinata15/personal-portfolio',
-        details: 'Personal portfolio website',
-        skills: ['NextJS', 'React', 'Tailwind', 'Vercel'],
-        image_path: '/images/personal_portfolio.png',
-    },
-];
+export const metadata: Metadata = {
+    title: 'Projects',
+    description:
+        'Selected software projects by Adi Nata — laser tag IoT systems, e-commerce, and this portfolio.',
+};
 
 export default function ProjectPage() {
     return (
-        <div className="flex-col min-h-screen py-8 px-10 bg-gradient-to-br from-green-50 via-blue-50 to-purple-50 dark:from-green-950 dark:via-blue-950 dark:to-purple-950">
+        <main className="flex-col min-h-screen py-8 px-10 bg-gradient-to-br from-green-50 via-blue-50 to-purple-50 dark:from-green-950 dark:via-blue-950 dark:to-purple-950">
             <h1 className="text-5xl mb-20 font-bold text-gray-800 dark:text-gray-200 text-center">
-                Project
+                Projects
             </h1>
-            <ol className="group/list inline-block">
-                {projects.map((project, index) => {
-                    return <ProjectListItem key={index} {...project} />;
-                })}
+            <ol className="group/list block w-full">
+                {projects.map((project) => (
+                    <ProjectListItem key={project.title} {...project} />
+                ))}
             </ol>
-        </div>
+        </main>
     );
 }
