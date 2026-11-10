@@ -1,30 +1,45 @@
-export const skills = [
-    'C',
-    'C++',
-    'Python',
-    'C#',
-    'JavaScript',
-    'React',
-    'Node.js',
-    'Docker',
-    'Kubernetes',
+export type SkillGroup = {
+    title: string;
+    skills: string[];
+};
+
+export const skillGroups: SkillGroup[] = [
+    {
+        title: 'Programming Languages',
+        skills: ['TypeScript', 'JavaScript', 'Python', 'C', 'C++', 'C#'],
+    },
+    {
+        title: 'Web Development',
+        skills: ['React', 'Svelte', 'Node.js', 'HTML', 'Tailwind', 'Spring Boot', '.NET'],
+    },
+    {
+        title: 'Databases',
+        skills: ['PostgreSQL', 'MySQL', 'MongoDB', 'Redis'],
+    },
+    {
+        title: 'DevOps',
+        skills: ['Git', 'Docker', 'Kubernetes', 'Terraform', 'AWS', 'OCI', 'GitHub Actions'],
+    },
 ];
+
+export const coreCompetencies =
+    'Problem Solving · Fast Learner · Communication · Collaboration · Adaptability · Mobility';
 
 export const domains = [
     {
-        title: 'Web Development',
+        title: 'Full-Stack Web',
         icon: '🌐',
-        description: 'Full-stack web applications with modern frameworks',
+        description: 'End-to-end web applications with React, Node.js, and modern frameworks',
     },
     {
-        title: 'IoT Systems',
-        icon: '📡',
-        description: 'Connected devices and smart solutions',
+        title: 'Distributed Backends',
+        icon: '⚙️',
+        description: 'Microservices, messaging, and orchestration across heterogeneous systems',
     },
     {
-        title: 'Embedded Systems',
-        icon: '🔧',
-        description: 'Low-level programming and hardware integration',
+        title: 'Secure Cloud Platforms',
+        icon: '☁️',
+        description: 'AWS and Kubernetes platforms with Terraform, CI/CD, and strong security',
     },
 ];
 

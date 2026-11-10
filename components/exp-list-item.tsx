@@ -54,7 +54,11 @@ export function ExpListItem({
                             </span>
                         </Link>
                     </h3>
-                    <p className="mt-2 text-sm leading-normal">{details}</p>
+                    <ul className="mt-2 list-disc space-y-2 pl-5 text-sm leading-normal">
+                        {details.map((detail) => (
+                            <li key={detail}>{detail}</li>
+                        ))}
+                    </ul>
                     <ul className="mt-2 flex flex-wrap" aria-label="Technologies used">
                         {skills.map((skill, index) => (
                             <li

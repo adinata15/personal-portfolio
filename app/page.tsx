@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import type { Metadata } from 'next';
-import { domains, skills } from '@/data/home';
+import { coreCompetencies, domains, skillGroups } from '@/data/home';
 import { SocialLinks } from '@/components/social-links';
 import { ctaClass } from '@/lib/styles';
 import { cn } from '@/lib/utils';
@@ -9,7 +9,7 @@ import { cn } from '@/lib/utils';
 export const metadata: Metadata = {
     title: 'Home',
     description:
-        'Adi Nata — Software Engineer building web, IoT, and embedded systems. Explore projects, experience, and resume.',
+        'Adi Nata — Software Engineer building full-stack web apps, distributed backends, and secure cloud platforms. Explore projects, experience, and resume.',
 };
 
 export default function MainPage() {
@@ -64,10 +64,16 @@ export default function MainPage() {
                     <div className="grid md:grid-cols-2 gap-8 items-center bg-white/60 dark:bg-gray-800/60 backdrop-blur-sm rounded-2xl p-8 shadow-md ring-1 ring-gray-900/10 dark:ring-blue-400/10">
                         <div>
                             <p className="text-gray-700 dark:text-gray-300 text-lg leading-relaxed mb-4">
-                                I am a versatile software engineer with a passion for creating
-                                innovative solutions across multiple domains. When I am not coding,
-                                you will find me exploring the great outdoors, reading books, or
-                                planning my next adventure.
+                                Software engineer with experience building full-stack web
+                                applications, distributed backend services, and secure cloud
+                                platforms across manufacturing, research, and government
+                                environments. Delivered MES applications, automated machine
+                                workflows, and a secure data-sharing platform serving more than
+                                1500 users.
+                            </p>
+                            <p className="text-gray-700 dark:text-gray-300 text-lg leading-relaxed mb-4">
+                                When I am not coding, you will find me exploring the great outdoors,
+                                reading books, or planning my next adventure.
                             </p>
                             <p className="text-gray-700 dark:text-gray-300 text-lg leading-relaxed">
                                 My love for nature inspires my approach to technology - building
@@ -116,27 +122,38 @@ export default function MainPage() {
                     <h2 className="text-3xl font-bold text-gray-800 dark:text-gray-200 mb-8 text-center">
                         Technical Skills
                     </h2>
-                    <div className="bg-white/60 dark:bg-gray-800/60 backdrop-blur-sm rounded-2xl p-8 shadow-md ring-1 ring-gray-900/10 dark:ring-blue-400/10">
-                        <ul
-                            className="flex flex-wrap gap-3 justify-center"
-                            aria-label="Technical skills"
-                        >
-                            {skills.map((skill, index) => (
-                                <li key={skill}>
-                                    <span
-                                        className={`inline-block px-4 py-2 rounded-full text-white font-semibold shadow-md transition-all duration-300 hover:scale-105 motion-reduce:hover:scale-100 ${
-                                            index % 3 === 0
-                                                ? 'bg-blue-500 hover:bg-blue-600'
-                                                : index % 3 === 1
-                                                  ? 'bg-green-500 hover:bg-green-600'
-                                                  : 'bg-purple-500 hover:bg-purple-600'
-                                        }`}
-                                    >
-                                        {skill}
-                                    </span>
-                                </li>
-                            ))}
-                        </ul>
+                    <div className="bg-white/60 dark:bg-gray-800/60 backdrop-blur-sm rounded-2xl p-8 shadow-md ring-1 ring-gray-900/10 dark:ring-blue-400/10 space-y-8">
+                        {skillGroups.map((group, groupIndex) => (
+                            <div key={group.title}>
+                                <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-3 text-center">
+                                    {group.title}
+                                </h3>
+                                <ul
+                                    className="flex flex-wrap gap-3 justify-center"
+                                    aria-label={group.title}
+                                >
+                                    {group.skills.map((skill, index) => {
+                                        const colorClasses = [
+                                            'bg-blue-500 hover:bg-blue-600',
+                                            'bg-green-500 hover:bg-green-600',
+                                            'bg-purple-500 hover:bg-purple-600',
+                                        ][(groupIndex + index) % 3];
+                                        return (
+                                            <li key={skill}>
+                                                <span
+                                                    className={`inline-block px-4 py-2 rounded-full text-white font-semibold shadow-md transition-all duration-300 hover:scale-105 motion-reduce:hover:scale-100 ${colorClasses}`}
+                                                >
+                                                    {skill}
+                                                </span>
+                                            </li>
+                                        );
+                                    })}
+                                </ul>
+                            </div>
+                        ))}
+                        <p className="text-center text-gray-600 dark:text-gray-400 text-sm pt-2">
+                            {coreCompetencies}
+                        </p>
                     </div>
                 </section>
 

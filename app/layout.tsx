@@ -13,11 +13,11 @@ export const metadata: Metadata = {
         template: "%s | Adi Nata's Portfolio",
     },
     description:
-        'Portfolio of Adi Nata — software engineer specializing in web development, IoT, and embedded systems.',
+        'Portfolio of Adi Nata — software engineer specializing in full-stack web, distributed backends, and secure cloud platforms.',
     openGraph: {
         title: "Adi Nata's Portfolio",
         description:
-            'Software engineer specializing in web development, IoT, and embedded systems.',
+            'Software engineer specializing in full-stack web, distributed backends, and secure cloud platforms.',
         url: siteUrl,
         siteName: "Adi Nata's Portfolio",
         locale: 'en_US',
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
         card: 'summary',
         title: "Adi Nata's Portfolio",
         description:
-            'Software engineer specializing in web development, IoT, and embedded systems.',
+            'Software engineer specializing in full-stack web, distributed backends, and secure cloud platforms.',
     },
 };
 
