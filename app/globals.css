@@ -16,6 +16,10 @@
         opacity: 1 !important;
         transform: none !important;
     }
+
+    .aurora-blob {
+        animation: none !important;
+    }
 }
 
 @layer utilities {
@@ -26,32 +30,171 @@
 
 @layer base {
     :root {
-        --background: 0 0% 100%;
-        --foreground: 0 0% 3.9%;
-        --border: 0 0% 89.8%;
-        --ring: 0 0% 3.9%;
-        --radius: 0.5rem;
+        /* Warm off-white surface */
+        --background: 40 20% 98%;
+        --foreground: 222 47% 11%;
+        --card: 0 0% 100%;
+        --card-foreground: 222 47% 11%;
+        --muted: 210 20% 96%;
+        --muted-foreground: 215 16% 35%;
+        --accent: 142 76% 29%;
+        --accent-foreground: 0 0% 100%;
+        --border: 214 20% 88%;
+        --ring: 142 76% 29%;
+        --radius: 0.75rem;
+
+        /* Glass tokens */
+        --glass-bg: 0 0% 100% / 0.55;
+        --glass-bg-strong: 0 0% 100% / 0.72;
+        --glass-border: 0 0% 100% / 0.6;
+        --glass-highlight: 0 0% 100% / 0.7;
+        --glass-shadow: 0 8px 32px hsl(222 47% 11% / 0.08);
+
+        /* Aurora blob colors (green, teal, blue) */
+        --aurora-1: 142 76% 45%;
+        --aurora-2: 174 60% 42%;
+        --aurora-3: 210 80% 55%;
     }
     .dark {
-        --background: 0 0% 3.9%;
-        --foreground: 0 0% 98%;
-        --border: 0 0% 14.9%;
-        --ring: 0 0% 83.1%;
-    }
-}
+        /* Slate dark surface */
+        --background: 222 47% 7%;
+        --foreground: 210 40% 98%;
+        --card: 217 33% 12%;
+        --card-foreground: 210 40% 98%;
+        --muted: 217 25% 16%;
+        --muted-foreground: 215 16% 72%;
+        --accent: 142 69% 45%;
+        --accent-foreground: 222 47% 7%;
+        --border: 215 20% 28%;
+        --ring: 142 69% 45%;
 
-@layer base {
+        /* Glass tokens */
+        --glass-bg: 0 0% 100% / 0.06;
+        --glass-bg-strong: 0 0% 100% / 0.1;
+        --glass-border: 0 0% 100% / 0.1;
+        --glass-highlight: 0 0% 100% / 0.1;
+        --glass-shadow: 0 8px 32px hsl(0 0% 0% / 0.35);
+
+        /* Aurora blob colors */
+        --aurora-1: 142 69% 40%;
+        --aurora-2: 174 55% 35%;
+        --aurora-3: 210 70% 45%;
+    }
+
     * {
         @apply border-border;
     }
+    html {
+        @apply bg-background;
+    }
     body {
-        @apply bg-background text-foreground;
+        @apply relative bg-transparent text-foreground antialiased;
     }
 }
 
 @layer components {
     .hero-enter {
         animation: hero-fade 0.8s ease-out both;
+    }
+
+    .glass,
+    .glass-strong {
+        border: 1px solid hsl(var(--glass-border));
+        box-shadow:
+            var(--glass-shadow),
+            inset 0 1px 0 0 hsl(var(--glass-highlight));
+    }
+
+    .glass {
+        background-color: hsl(var(--glass-bg));
+        backdrop-filter: blur(16px) saturate(160%);
+        -webkit-backdrop-filter: blur(16px) saturate(160%);
+    }
+
+    .glass-strong {
+        background-color: hsl(var(--glass-bg-strong));
+        backdrop-filter: blur(24px) saturate(180%);
+        -webkit-backdrop-filter: blur(24px) saturate(180%);
+    }
+
+    .aurora-blob {
+        position: absolute;
+        border-radius: 9999px;
+        filter: blur(80px);
+        opacity: 0.45;
+        will-change: transform;
+        animation: aurora-drift 28s ease-in-out infinite alternate;
+    }
+
+    .dark .aurora-blob {
+        opacity: 0.35;
+    }
+
+    .aurora-blob-1 {
+        background: hsl(var(--aurora-1));
+        width: 40vw;
+        height: 40vw;
+        max-width: 520px;
+        max-height: 520px;
+        top: -10%;
+        left: -5%;
+        animation-delay: 0s;
+    }
+
+    .aurora-blob-2 {
+        background: hsl(var(--aurora-2));
+        width: 35vw;
+        height: 35vw;
+        max-width: 440px;
+        max-height: 440px;
+        top: 35%;
+        right: -8%;
+        animation-delay: -9s;
+        animation-duration: 34s;
+    }
+
+    .aurora-blob-3 {
+        background: hsl(var(--aurora-3));
+        width: 45vw;
+        height: 45vw;
+        max-width: 560px;
+        max-height: 560px;
+        bottom: -15%;
+        left: 25%;
+        animation-delay: -16s;
+        animation-duration: 40s;
+    }
+
+    .name-gradient {
+        background-image: linear-gradient(
+            135deg,
+            hsl(var(--accent)) 0%,
+            hsl(var(--aurora-2)) 55%,
+            hsl(var(--aurora-3)) 100%
+        );
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+    }
+}
+
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+    .glass,
+    .glass-strong {
+        background-color: hsl(var(--card));
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+    }
+}
+
+@media (prefers-reduced-transparency: reduce) {
+    .glass,
+    .glass-strong {
+        background-color: hsl(var(--card));
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+        border-color: hsl(var(--border));
+        box-shadow: 0 1px 2px hsl(222 47% 11% / 0.06);
     }
 }
 
@@ -63,5 +206,20 @@
     to {
         opacity: 1;
         transform: translateY(0);
+    }
+}
+
+@keyframes aurora-drift {
+    0% {
+        transform: translate3d(0, 0, 0) scale(1);
+    }
+    33% {
+        transform: translate3d(4%, 6%, 0) scale(1.05);
+    }
+    66% {
+        transform: translate3d(-3%, 3%, 0) scale(0.97);
+    }
+    100% {
+        transform: translate3d(2%, -4%, 0) scale(1.03);
     }
 }

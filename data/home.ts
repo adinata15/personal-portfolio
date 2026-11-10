@@ -25,23 +25,31 @@ export const skillGroups: SkillGroup[] = [
 export const coreCompetencies =
     'Problem Solving · Fast Learner · Communication · Collaboration · Adaptability · Mobility';
 
-export const domains = [
+export type Domain = {
+    title: string;
+    icon: 'web' | 'backend' | 'cloud';
+    description: string;
+};
+
+export const domains: Domain[] = [
     {
         title: 'Full-Stack Web',
-        icon: '🌐',
+        icon: 'web',
         description: 'End-to-end web applications with React, Node.js, and modern frameworks',
     },
     {
         title: 'Distributed Backends',
-        icon: '⚙️',
+        icon: 'backend',
         description: 'Microservices, messaging, and orchestration across heterogeneous systems',
     },
     {
         title: 'Secure Cloud Platforms',
-        icon: '☁️',
+        icon: 'cloud',
         description: 'AWS and Kubernetes platforms with Terraform, CI/CD, and strong security',
     },
 ];
+
+export const contactEmail = 'adinata.softwareengineer@gmail.com';
 
 export const socials = [
     {
@@ -61,7 +69,7 @@ export const socials = [
     },
     {
         title: 'Email',
-        link: 'mailto:adinata.softwareengineer@gmail.com',
+        link: `mailto:${contactEmail}`,
         external: false,
     },
 ] as const;

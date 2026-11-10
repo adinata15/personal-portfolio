@@ -1,20 +1,22 @@
 import Image from 'next/image';
+import { glassPanelClass, portraitFrameClass } from '@/lib/styles';
+import { cn } from '@/lib/utils';
 
 export function Footer() {
     return (
-        <footer className="bg-gray-800 dark:bg-gray-900 text-white py-8 px-8">
-            <div className="max-w-6xl mx-auto text-center">
-                <div className="flex items-center justify-center space-x-3 mb-4">
-                    <div className="w-8 h-8 min-w-8 bg-gray-200 border-2 border-orange-400 rounded-full flex items-center justify-center overflow-hidden">
-                        <Image src="/images/personal.png" alt="" width={32} height={32} />
+        <footer className="px-3 pb-6 pt-8 sm:px-6">
+            <div className={cn(glassPanelClass, 'mx-auto max-w-6xl px-6 py-8 sm:px-8')}>
+                <div className="text-center text-foreground md:text-left">
+                    <div className="mb-3 flex items-center justify-center space-x-3 md:justify-start">
+                        <div className={cn(portraitFrameClass, 'h-8 w-8 min-w-8')}>
+                            <Image src="/images/personal.png" alt="" width={32} height={32} />
+                        </div>
+                        <span className="text-lg font-semibold">Adi Nata</span>
                     </div>
-                    <span className="text-lg font-semibold">
-                        Created with Next and Tailwind by Adi Nata
-                    </span>
+                    <p className="text-sm text-muted-foreground">
+                        Software Engineer · Nature Enthusiast · Bookworm
+                    </p>
                 </div>
-                <p className="text-gray-400 dark:text-gray-500">
-                    Software Engineer • Nature Enthusiast • Bookworm
-                </p>
             </div>
         </footer>
     );

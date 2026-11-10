@@ -1,13 +1,13 @@
 'use client';
 
-import { ThemeToggle } from '@/components/theme-toggle';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { HamburgerMenu } from './hamburger-menu';
 import { useEffect, useRef, useState } from 'react';
+import { ThemeToggle } from '@/components/theme-toggle';
+import { HamburgerMenu } from './hamburger-menu';
+import { focusRing, glassPanelClass, portraitFrameClass } from '@/lib/styles';
 import { cn } from '@/lib/utils';
-import { focusRing } from '@/lib/styles';
 
 const pages = [
     { name: 'Home', link: '/' },
@@ -16,130 +16,130 @@ const pages = [
     { name: 'Resume', link: '/resume' },
 ];
 
+const activeNavClass = 'bg-accent/15 font-medium text-accent';
+
+function isActivePage(pathname: string, link: string): boolean {
+    return link === '/' ? pathname === '/' : pathname.startsWith(link);
+}
+
 export function NavBar() {
     const [isExpanded, setExpanded] = useState(false);
     const pathname = usePathname();
     const menuId = 'mobile-nav-menu';
     const menuButtonRef = useRef<HTMLButtonElement>(null);
     const firstLinkRef = useRef<HTMLAnchorElement>(null);
-    const wasExpandedRef = useRef(false);
 
     useEffect(() => {
-        if (!isExpanded) return;
-
-        const onKeyDown = (event: KeyboardEvent) => {
-            if (event.key === 'Escape') {
+        const handleEscape = (event: KeyboardEvent) => {
+            if (event.key === 'Escape' && isExpanded) {
                 setExpanded(false);
                 menuButtonRef.current?.focus();
             }
         };
 
-        window.addEventListener('keydown', onKeyDown);
-        return () => window.removeEventListener('keydown', onKeyDown);
+        const handleResize = () => {
+            const isDesktop = window.matchMedia('(min-width: 768px)').matches;
+            if (isDesktop && isExpanded) setExpanded(false);
+        };
+
+        window.addEventListener('keydown', handleEscape);
+        window.addEventListener('resize', handleResize);
+        return () => {
+            window.removeEventListener('keydown', handleEscape);
+            window.removeEventListener('resize', handleResize);
+        };
     }, [isExpanded]);
 
     useEffect(() => {
-        const media = window.matchMedia('(min-width: 768px)');
-        const onChange = () => {
-            if (media.matches) setExpanded(false);
-        };
-        media.addEventListener('change', onChange);
-        return () => media.removeEventListener('change', onChange);
-    }, []);
-
-    useEffect(() => {
-        if (isExpanded && !wasExpandedRef.current) {
-            firstLinkRef.current?.focus();
-        }
-        wasExpandedRef.current = isExpanded;
+        if (isExpanded) firstLinkRef.current?.focus();
     }, [isExpanded]);
 
     return (
-        <nav
-            className="sticky top-0 z-40 flex-col backdrop-blur-sm bg-white/70 dark:bg-gray-900/70"
-            aria-label="Primary"
-        >
-            <div className="py-6 px-8 flex justify-between items-center">
-                <Link
-                    href="/"
-                    className={cn('flex items-center space-x-3 rounded-sm', focusRing)}
-                    onClick={() => setExpanded(false)}
-                >
-                    <div className="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center border-2 border-orange-400 overflow-hidden">
-                        <Image
-                            src="/images/personal.png"
-                            alt="Photo of Adi Nata"
-                            width={40}
-                            height={40}
-                            priority
-                        />
+        <div className="sticky top-0 z-40 px-3 pt-3 sm:px-6">
+            <nav
+                className={cn(glassPanelClass, 'mx-auto flex max-w-6xl flex-col')}
+                aria-label="Primary"
+            >
+                <div className="flex w-full items-center justify-between px-4 py-3 sm:px-6">
+                    <Link
+                        href="/"
+                        className={cn('flex items-center space-x-3 rounded-sm', focusRing)}
+                        onClick={() => setExpanded(false)}
+                    >
+                        <div className={cn(portraitFrameClass, 'h-10 w-10')}>
+                            <Image
+                                src="/images/personal.png"
+                                alt=""
+                                width={40}
+                                height={40}
+                                priority
+                            />
+                        </div>
+                        <span className="text-xl font-semibold text-foreground">Adi Nata</span>
+                    </Link>
+                    <div className="flex items-center space-x-4 md:space-x-6">
+                        <div className="hidden space-x-2 md:flex">
+                            {pages.map((page) => {
+                                const isActive = isActivePage(pathname, page.link);
+                                return (
+                                    <Link
+                                        key={page.name}
+                                        href={page.link}
+                                        aria-current={isActive ? 'page' : undefined}
+                                        className={cn(
+                                            'rounded-full px-3 py-1.5 text-muted-foreground transition-colors duration-200 hover:text-accent',
+                                            focusRing,
+                                            isActive && activeNavClass,
+                                            isActive && 'ring-1 ring-accent/25',
+                                        )}
+                                    >
+                                        {page.name}
+                                    </Link>
+                                );
+                            })}
+                        </div>
+                        <ThemeToggle />
+                        <div className="md:hidden">
+                            <HamburgerMenu
+                                ref={menuButtonRef}
+                                expanded={isExpanded}
+                                setExpanded={setExpanded}
+                                controlsId={menuId}
+                            />
+                        </div>
                     </div>
-                    <span className="text-xl font-semibold text-gray-800 dark:text-gray-200">
-                        Adi Nata
-                    </span>
-                </Link>
-                <div className="flex items-center space-x-8">
-                    <div className="hidden md:flex space-x-8">
-                        {pages.map((page) => {
-                            const isActive =
-                                page.link === '/'
-                                    ? pathname === '/'
-                                    : pathname.startsWith(page.link);
-                            return (
+                </div>
+                <ul
+                    id={menuId}
+                    hidden={!isExpanded}
+                    className={
+                        isExpanded
+                            ? 'flex w-full flex-col border-t border-white/40 dark:border-white/10 md:hidden'
+                            : undefined
+                    }
+                >
+                    {pages.map((page, index) => {
+                        const isActive = isActivePage(pathname, page.link);
+                        return (
+                            <li key={page.name} className="flex w-full">
                                 <Link
-                                    key={page.name}
+                                    ref={index === 0 ? firstLinkRef : undefined}
+                                    className={cn(
+                                        'm-1 inline-flex min-h-11 w-full items-center justify-center rounded-xl text-muted-foreground transition-colors duration-200 hover:bg-accent/10 hover:text-accent',
+                                        focusRing,
+                                        isActive && activeNavClass,
+                                    )}
                                     href={page.link}
                                     aria-current={isActive ? 'page' : undefined}
-                                    className={cn(
-                                        'text-gray-600 dark:text-gray-300 hover:text-green-600 dark:hover:text-green-400 transition-colors rounded-sm',
-                                        focusRing,
-                                        isActive &&
-                                            'text-green-600 dark:text-green-400 font-medium',
-                                    )}
+                                    onClick={() => setExpanded(false)}
                                 >
                                     {page.name}
                                 </Link>
-                            );
-                        })}
-                    </div>
-                    <ThemeToggle />
-                    <div className="md:hidden">
-                        <HamburgerMenu
-                            ref={menuButtonRef}
-                            expanded={isExpanded}
-                            setExpanded={setExpanded}
-                            controlsId={menuId}
-                        />
-                    </div>
-                </div>
-            </div>
-            <ul
-                id={menuId}
-                hidden={!isExpanded}
-                className={isExpanded ? 'flex flex-col w-full md:hidden' : undefined}
-            >
-                {pages.map((page, index) => {
-                    const isActive =
-                        page.link === '/' ? pathname === '/' : pathname.startsWith(page.link);
-                    return (
-                        <li key={page.name} className="w-full flex">
-                            <Link
-                                ref={index === 0 ? firstLinkRef : undefined}
-                                className={cn(
-                                    'w-full text-center border border-transparent m-1 h-10 rounded hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-600 dark:text-gray-300 hover:text-green-600 dark:hover:text-green-400 transition-colors inline-flex items-center justify-center',
-                                    focusRing,
-                                    isActive && 'text-green-600 dark:text-green-400 font-medium',
-                                )}
-                                href={page.link}
-                                aria-current={isActive ? 'page' : undefined}
-                                onClick={() => setExpanded(false)}
-                            >
-                                {page.name}
-                            </Link>
-                        </li>
-                    );
-                })}
-            </ul>
-        </nav>
+                            </li>
+                        );
+                    })}
+                </ul>
+            </nav>
+        </div>
     );
 }

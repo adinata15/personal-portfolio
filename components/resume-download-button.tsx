@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { Notification } from '@/components/notification';
-import { ctaClass } from '@/lib/styles';
+import { ctaSecondaryClass } from '@/lib/styles';
 import { cn } from '@/lib/utils';
 
 export function ResumeDownloadButton({ className }: { className?: string }) {
@@ -11,13 +11,13 @@ export function ResumeDownloadButton({ className }: { className?: string }) {
 
     useEffect(() => {
         return () => {
-            if (timeoutRef.current != null) window.clearTimeout(timeoutRef.current);
+            if (timeoutRef.current !== null) window.clearTimeout(timeoutRef.current);
         };
     }, []);
 
     const showNotification = () => {
+        if (timeoutRef.current !== null) window.clearTimeout(timeoutRef.current);
         setNotificationOn(true);
-        if (timeoutRef.current != null) window.clearTimeout(timeoutRef.current);
         timeoutRef.current = window.setTimeout(() => setNotificationOn(false), 5000);
     };
 
@@ -28,7 +28,7 @@ export function ResumeDownloadButton({ className }: { className?: string }) {
                 href="/pdfs/resume.pdf"
                 download="AdiNata's resume.pdf"
                 onClick={showNotification}
-                className={cn(ctaClass, 'w-48', className)}
+                className={cn(ctaSecondaryClass, 'w-48 shrink-0', className)}
             >
                 Download PDF
             </a>

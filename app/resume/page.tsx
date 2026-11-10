@@ -1,6 +1,14 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { ResumeDownloadButton } from '@/components/resume-download-button';
+import {
+    glassPanelClass,
+    linkAccentClass,
+    pageHeaderClass,
+    pageIntroClass,
+    pageTitleClass,
+} from '@/lib/styles';
+import { cn } from '@/lib/utils';
 
 export const metadata: Metadata = {
     title: 'Resume',
@@ -9,20 +17,15 @@ export const metadata: Metadata = {
 
 export default function ResumePage() {
     return (
-        <main
-            id="main-content"
-            className="flex flex-col min-h-[calc(100dvh-8rem)] bg-gradient-to-br from-green-50 via-blue-50 to-purple-50 dark:from-green-950 dark:via-blue-950 dark:to-purple-950"
-        >
-            <div className="px-8 pt-6 pb-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 max-w-6xl mx-auto w-full">
-                <div>
-                    <h1 className="text-3xl font-bold text-gray-800 dark:text-gray-200 mb-2">
-                        Resume
-                    </h1>
-                    <p className="text-gray-600 dark:text-gray-400 text-sm">
+        <main id="main-content" className="flex min-h-[calc(100dvh-8rem)] flex-col">
+            <div className="mx-auto flex w-full max-w-6xl flex-col gap-4 px-6 pb-4 pt-8 sm:flex-row sm:items-end sm:justify-between sm:px-8">
+                <header className={cn(pageHeaderClass, 'mb-0 text-left')}>
+                    <h1 className={pageTitleClass}>Resume</h1>
+                    <p className={pageIntroClass}>
                         If the PDF viewer does not load,{' '}
                         <Link
                             href="/pdfs/resume.pdf"
-                            className="text-green-600 dark:text-green-400 underline underline-offset-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-500 rounded-sm"
+                            className={linkAccentClass}
                             target="_blank"
                             rel="noreferrer noopener"
                         >
@@ -30,27 +33,31 @@ export default function ResumePage() {
                         </Link>
                         .
                     </p>
-                </div>
+                </header>
                 <ResumeDownloadButton />
             </div>
-            <object
-                data="/pdfs/resume.pdf"
-                type="application/pdf"
-                className="w-full flex-1 min-h-[70dvh] border-none"
-                aria-label="Adi Nata resume PDF"
-            >
-                <p className="p-8 text-center text-gray-600 dark:text-gray-400">
-                    Your browser cannot display embedded PDFs.{' '}
-                    <a
-                        href="/pdfs/resume.pdf"
-                        className="text-green-600 dark:text-green-400 underline"
-                        download="AdiNata's resume.pdf"
+            <div className="mx-auto mb-8 w-full max-w-6xl flex-1 px-6 sm:px-8">
+                <div className={cn(glassPanelClass, 'overflow-hidden')}>
+                    <object
+                        data="/pdfs/resume.pdf"
+                        type="application/pdf"
+                        className="min-h-[70dvh] w-full border-none"
+                        aria-label="Adi Nata resume PDF"
                     >
-                        Download the resume instead
-                    </a>
-                    .
-                </p>
-            </object>
+                        <p className="p-8 text-center text-muted-foreground">
+                            Your browser cannot display embedded PDFs.{' '}
+                            <a
+                                href="/pdfs/resume.pdf"
+                                className={linkAccentClass}
+                                download="AdiNata's resume.pdf"
+                            >
+                                Download the resume instead
+                            </a>
+                            .
+                        </p>
+                    </object>
+                </div>
+            </div>
         </main>
     );
 }

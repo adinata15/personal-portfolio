@@ -1,15 +1,21 @@
 'use client';
 
+import { glassPanelClass } from '@/lib/styles';
+import { cn } from '@/lib/utils';
+
 export function Notification({ message, isOpen }: { message: string; isOpen: boolean }) {
     if (!isOpen) return null;
 
     return (
         <div
-            className="flex fixed top-4 z-50 min-w-64 w-max max-w-[90vw] -translate-x-1/2 left-1/2 items-center rounded bg-green-100 text-green-900 dark:bg-green-900 dark:text-green-100 text-sm font-bold px-4 py-3 shadow-md"
+            className={cn(
+                glassPanelClass,
+                'fixed left-1/2 top-4 z-50 flex w-max min-w-64 max-w-[90vw] -translate-x-1/2 items-center px-4 py-3 text-sm font-medium text-foreground',
+            )}
             role="alert"
         >
             <svg
-                className="fill-current w-4 h-4 mr-2 shrink-0"
+                className="mr-2 h-4 w-4 shrink-0 fill-accent"
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 20 20"
                 aria-hidden="true"

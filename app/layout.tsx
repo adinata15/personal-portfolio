@@ -1,10 +1,27 @@
 import type { Metadata } from 'next';
+import { IBM_Plex_Sans, JetBrains_Mono } from 'next/font/google';
 import './globals.css';
 import { ThemeProvider } from '@/components/theme-provider';
+import { AuroraBackground } from '@/components/aurora-background';
 import { NavBar } from '@/components/navbar';
 import { Footer } from '@/components/footer';
 import { MouseEffect } from '@/components/mouse-effect';
 import { siteUrl } from '@/lib/site';
+import { cn } from '@/lib/utils';
+
+const ibmPlexSans = IBM_Plex_Sans({
+    subsets: ['latin'],
+    weight: ['400', '500', '600', '700'],
+    variable: '--font-ibm-plex-sans',
+    display: 'swap',
+});
+
+const jetbrainsMono = JetBrains_Mono({
+    subsets: ['latin'],
+    weight: ['400', '500', '600'],
+    variable: '--font-jetbrains-mono',
+    display: 'swap',
+});
 
 export const metadata: Metadata = {
     metadataBase: new URL(siteUrl),
@@ -31,22 +48,38 @@ export const metadata: Metadata = {
     },
 };
 
-const themeInitScript = `(function(){try{var k='portfolio-theme';var t=localStorage.getItem(k);var d=window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';var r=(t==='light'||t==='dark')?t:d;if(t!==r)localStorage.setItem(k,r);var e=document.documentElement;e.classList.remove('light','dark');e.classList.add(r);}catch(e){}})();`;
+const themeInitScript = `(function () {
+    try {
+        const key = 'portfolio-theme';
+        const saved = localStorage.getItem(key);
+        const system = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        const theme = saved === 'light' || saved === 'dark' ? saved : system;
+        if (saved !== theme) localStorage.setItem(key, theme);
+        const root = document.documentElement;
+        root.classList.remove('light', 'dark');
+        root.classList.add(theme);
+    } catch (e) {}
+})();`;
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
     return (
-        <html lang="en" suppressHydrationWarning>
+        <html
+            lang="en"
+            suppressHydrationWarning
+            className={cn(ibmPlexSans.variable, jetbrainsMono.variable)}
+        >
             <head>
                 <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
             </head>
-            <body className="">
+            <body className="font-sans">
                 <ThemeProvider defaultTheme="dark">
                     <a
                         href="#main-content"
-                        className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:rounded-md focus:bg-white focus:px-4 focus:py-2 focus:text-green-700 focus:shadow-lg focus:outline-none focus:ring-2 focus:ring-green-500 dark:focus:bg-gray-900 dark:focus:text-green-300"
+                        className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:rounded-md focus:bg-card focus:px-4 focus:py-2 focus:text-accent focus:shadow-lg focus:outline-none focus:ring-2 focus:ring-ring"
                     >
                         Skip to main content
                     </a>
+                    <AuroraBackground />
                     <MouseEffect />
                     <NavBar />
                     {children}

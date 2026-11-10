@@ -2,9 +2,9 @@ export type ExpDetails = {
     duration: string;
     role: string;
     company: string;
-    company_link: string;
-    details: string[];
-    skills: string[];
+    company_link?: string;
+    details?: string[];
+    skills?: string[];
 };
 
 export const experiences: ExpDetails[] = [
@@ -101,9 +101,11 @@ export const experiences: ExpDetails[] = [
     },
 ];
 
-export const education = {
-    school: 'National University of Singapore (NUS)',
-    degree: 'Computer Engineering',
+export const education: ExpDetails = {
+    duration: '2018 - 2022',
+    role: 'Computer Engineering',
+    company: 'National University of Singapore (NUS)',
+    company_link: 'https://www.nus.edu.sg/',
     details: [
         'Minor: Financial Mathematics',
         'Activities: Engineering Student Ambassadors',
@@ -111,17 +113,36 @@ export const education = {
     ],
 };
 
-export const certifications = [
-    'Certified Kubernetes Administrator (CKA)',
-    'AWS Certified Solutions Architect - Professional',
-    'Claude Certified Architect - Foundations',
-    'OCI Certified Developer - Professional',
-    'Certified SAFe 6 Practitioner',
-];
+export type Certification = {
+    title: string;
+    issuer: string;
+    link?: string;
+};
 
-export const languages = [
-    'English (Bilingual)',
-    'Indonesian (Native)',
-    'Malay (Native)',
-    'Mandarin (Professional)',
+export const certifications: Certification[] = [
+    {
+        title: 'Certified Kubernetes Administrator (CKA)',
+        issuer: 'Cloud Native Computing Foundation',
+        link: 'https://www.cncf.io/training/certification/cka/',
+    },
+    {
+        title: 'AWS Certified Solutions Architect - Professional',
+        issuer: 'Amazon Web Services',
+        link: 'https://aws.amazon.com/certification/certified-solutions-architect-professional/',
+    },
+    {
+        title: 'Claude Certified Architect - Foundations',
+        issuer: 'Anthropic',
+        link: 'https://www.anthropic.com/',
+    },
+    {
+        title: 'OCI Certified Developer - Professional',
+        issuer: 'Oracle',
+        link: 'https://education.oracle.com/',
+    },
+    {
+        title: 'Certified SAFe 6 Practitioner',
+        issuer: 'Scaled Agile',
+        link: 'https://scaledagile.com/',
+    },
 ];
