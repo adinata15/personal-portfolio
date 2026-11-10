@@ -2,10 +2,7 @@ const noiseTexture = `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns
 
 export function AuroraBackground() {
     return (
-        <div
-            className="pointer-events-none fixed inset-0 -z-10 overflow-hidden"
-            aria-hidden="true"
-        >
+        <div className="pointer-events-none fixed inset-0 -z-10 overflow-hidden" aria-hidden="true">
             <div className="aurora-blob aurora-blob-1" />
             <div className="aurora-blob aurora-blob-2" />
             <div className="aurora-blob aurora-blob-3" />
