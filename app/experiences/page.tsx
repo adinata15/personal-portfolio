@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { ExpListItem } from '@/components/exp-list-item';
+import { ResumeDownloadButton } from '@/components/resume-download-button';
 import { certifications, education, experiences } from '@/data/experiences';
 import {
     cardClass,
@@ -49,13 +50,16 @@ export default function ExperiencePage() {
     return (
         <main id="main-content" className={pageMainClass}>
             <div className={pageColumnClass}>
-                <header className={pageHeaderClass}>
-                    <h1 className={pageTitleClass}>Experience</h1>
-                    <p className={pageIntroClass}>
-                        Roles across research engineering, manufacturing software, and secure cloud
-                        platforms — plus education and certifications.
-                    </p>
-                </header>
+                <div className="mb-12 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+                    <header className={cn(pageHeaderClass, 'mb-0')}>
+                        <h1 className={pageTitleClass}>Experience</h1>
+                        <p className={pageIntroClass}>
+                            Roles across research engineering, manufacturing software, and secure
+                            cloud platforms — plus education and certifications.
+                        </p>
+                    </header>
+                    <ResumeDownloadButton />
+                </div>
 
                 <ol className="mb-16 flex flex-col gap-6">
                     {experiences.map((experience) => (

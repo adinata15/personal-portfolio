@@ -79,8 +79,8 @@ function Hero() {
                             <Link href="/projects" className={ctaClass}>
                                 View Projects
                             </Link>
-                            <Link href="/resume" className={ctaSecondaryClass}>
-                                View Resume
+                            <Link href="/experiences" className={ctaSecondaryClass}>
+                                See experience
                             </Link>
                         </div>
                         <p className="mt-5 space-x-1 text-sm text-muted-foreground">
@@ -88,10 +88,6 @@ function Hero() {
                             <a href="#contact" className={linkAccentClass}>
                                 get in touch
                             </a>
-                            <span aria-hidden="true">·</span>
-                            <Link href="/experiences" className={linkAccentClass}>
-                                see experience
-                            </Link>
                         </p>
                     </div>
                 </div>

@@ -13,7 +13,6 @@ const pages = [
     { name: 'Home', link: '/' },
     { name: 'Experience', link: '/experiences' },
     { name: 'Projects', link: '/projects' },
-    { name: 'Resume', link: '/resume' },
 ];
 
 const activeNavClass = 'bg-accent/15 font-medium text-accent';
