@@ -1,7 +1,13 @@
 import type { Metadata } from 'next';
 import { ProjectListItem } from '@/components/project-list-item';
 import { projects } from '@/data/projects';
-import { pageHeaderClass, pageIntroClass, pageTitleClass } from '@/lib/styles';
+import {
+    pageColumnClass,
+    pageHeaderClass,
+    pageIntroClass,
+    pageMainClass,
+    pageTitleClass,
+} from '@/lib/styles';
 
 export const metadata: Metadata = {
     title: 'Projects',
@@ -11,15 +17,15 @@ export const metadata: Metadata = {
 
 export default function ProjectPage() {
     return (
-        <main id="main-content" className="min-h-screen px-6 py-8 sm:px-8">
-            <div className="mx-auto max-w-6xl">
+        <main id="main-content" className={pageMainClass}>
+            <div className={pageColumnClass}>
                 <header className={pageHeaderClass}>
                     <h1 className={pageTitleClass}>Projects</h1>
                     <p className={pageIntroClass}>
                         Selected work spanning IoT systems, e-commerce, and this portfolio site.
                     </p>
                 </header>
-                <ol className="group/list block w-full">
+                <ol className="flex flex-col gap-6">
                     {projects.map((project) => (
                         <ProjectListItem key={project.title} {...project} />
                     ))}

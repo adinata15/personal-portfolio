@@ -20,18 +20,19 @@ export const ctaSecondaryClass = [
 
 export const glassPanelClass = 'glass rounded-2xl';
 
+/** Outer horizontal inset matching navbar and footer. */
+export const pageGutterClass = 'px-3 sm:px-6';
+
+/** Content column width matching the navbar and footer panels. */
+export const pageColumnClass = 'mx-auto w-full max-w-6xl';
+
+/** Inner pages: gutter, full height, and compact vertical padding. */
+export const pageMainClass = `${pageGutterClass} min-h-screen py-8`;
+
 export const iconTileClass = `${glassPanelClass} flex h-14 w-14 items-center justify-center`;
 
 export const portraitFrameClass =
     'flex items-center justify-center overflow-hidden rounded-full border-2 border-accent bg-neutral-300 dark:bg-neutral-700';
-
-export const glassHoverClass =
-    'glass opacity-0 transition-opacity duration-200 group-hover:opacity-100 motion-reduce:transition-none';
-
-export const listHoverPlateClass = 'absolute -inset-x-4 -inset-y-4 z-0 hidden rounded-2xl';
-
-export const listHitAreaClass =
-    'absolute -inset-x-4 -inset-y-2.5 hidden rounded md:-inset-x-6 md:-inset-y-4';
 
 export const cardClass = [
     'glass text-card-foreground rounded-2xl p-6',

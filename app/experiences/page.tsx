@@ -5,8 +5,10 @@ import { certifications, education, experiences } from '@/data/experiences';
 import {
     cardClass,
     focusRing,
+    pageColumnClass,
     pageHeaderClass,
     pageIntroClass,
+    pageMainClass,
     pageTitleClass,
     sectionTitleClass,
 } from '@/lib/styles';
@@ -45,8 +47,8 @@ function CredentialLink({
 
 export default function ExperiencePage() {
     return (
-        <main id="main-content" className="min-h-screen px-6 py-8 sm:px-8">
-            <div className="mx-auto max-w-6xl">
+        <main id="main-content" className={pageMainClass}>
+            <div className={pageColumnClass}>
                 <header className={pageHeaderClass}>
                     <h1 className={pageTitleClass}>Experience</h1>
                     <p className={pageIntroClass}>
@@ -55,7 +57,7 @@ export default function ExperiencePage() {
                     </p>
                 </header>
 
-                <ol className="group/list mb-16 block w-full">
+                <ol className="mb-16 flex flex-col gap-6">
                     {experiences.map((experience) => (
                         <ExpListItem
                             key={`${experience.duration}-${experience.role}`}

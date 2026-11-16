@@ -4,6 +4,8 @@ import { ResumeDownloadButton } from '@/components/resume-download-button';
 import {
     glassPanelClass,
     linkAccentClass,
+    pageColumnClass,
+    pageGutterClass,
     pageHeaderClass,
     pageIntroClass,
     pageTitleClass,
@@ -17,8 +19,16 @@ export const metadata: Metadata = {
 
 export default function ResumePage() {
     return (
-        <main id="main-content" className="flex min-h-[calc(100dvh-8rem)] flex-col">
-            <div className="mx-auto flex w-full max-w-6xl flex-col gap-4 px-6 pb-4 pt-8 sm:flex-row sm:items-end sm:justify-between sm:px-8">
+        <main
+            id="main-content"
+            className={cn(pageGutterClass, 'flex min-h-[calc(100dvh-8rem)] flex-col')}
+        >
+            <div
+                className={cn(
+                    pageColumnClass,
+                    'flex flex-col gap-4 pb-4 pt-8 sm:flex-row sm:items-end sm:justify-between',
+                )}
+            >
                 <header className={cn(pageHeaderClass, 'mb-0 text-left')}>
                     <h1 className={pageTitleClass}>Resume</h1>
                     <p className={pageIntroClass}>
@@ -36,7 +46,7 @@ export default function ResumePage() {
                 </header>
                 <ResumeDownloadButton />
             </div>
-            <div className="mx-auto mb-8 w-full max-w-6xl flex-1 px-6 sm:px-8">
+            <div className={cn(pageColumnClass, 'mb-8 flex-1')}>
                 <div className={cn(glassPanelClass, 'overflow-hidden')}>
                     <object
                         data="/pdfs/resume.pdf"
