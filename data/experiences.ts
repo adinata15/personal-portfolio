@@ -111,7 +111,7 @@ export type Education = {
 
 export const education: Education[] = [
     {
-        duration: '2018 - 2022',
+        duration: '2019 - 2022',
         program: 'Computer Engineering',
         school: 'National University of Singapore (NUS)',
         schoolLink: 'https://www.nus.edu.sg/',
