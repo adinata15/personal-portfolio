@@ -2,102 +2,42 @@
 
 import {
     createContext,
-    useCallback,
     useContext,
     useEffect,
     useMemo,
     useSyncExternalStore,
+    type ReactNode,
 } from 'react';
+import {
+    SERVER_THEME,
+    getTheme,
+    setTheme,
+    subscribeTheme,
+    syncDocumentTheme,
+    type Theme,
+} from '@/lib/theme';
 
-type Theme = 'dark' | 'light';
-
-type ThemeProviderProps = {
-    children: React.ReactNode;
-    defaultTheme?: Theme;
-    storageKey?: string;
-};
-
-type ThemeProviderState = {
+type ThemeState = {
     theme: Theme;
-    resolvedTheme: Theme;
     setTheme: (theme: Theme) => void;
 };
 
-const ThemeProviderContext = createContext<ThemeProviderState | undefined>(undefined);
+const ThemeContext = createContext<ThemeState | undefined>(undefined);
 
-const themeListeners = new Set<() => void>();
-
-function emitThemeChange() {
-    themeListeners.forEach((listener) => listener());
-}
-
-function subscribeTheme(onStoreChange: () => void) {
-    themeListeners.add(onStoreChange);
-    const onStorage = (event: StorageEvent) => {
-        if (event.key) onStoreChange();
-    };
-    window.addEventListener('storage', onStorage);
-    return () => {
-        themeListeners.delete(onStoreChange);
-        window.removeEventListener('storage', onStorage);
-    };
-}
-
-function getSystemTheme(): Theme {
-    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-}
-
-function applyTheme(resolved: Theme) {
-    const root = window.document.documentElement;
-    root.classList.remove('light', 'dark');
-    root.classList.add(resolved);
-}
-
-function readStoredTheme(storageKey: string, fallback: Theme): Theme {
-    try {
-        const stored = localStorage.getItem(storageKey);
-        if (stored === 'light' || stored === 'dark') return stored;
-        if (stored === 'system' || stored === null) return getSystemTheme();
-    } catch {
-        /* ignore */
-    }
-    return fallback;
-}
-
-export function ThemeProvider({
-    children,
-    defaultTheme = 'dark',
-    storageKey = 'portfolio-theme',
-}: ThemeProviderProps) {
-    const theme = useSyncExternalStore(
-        subscribeTheme,
-        () => readStoredTheme(storageKey, defaultTheme),
-        () => defaultTheme,
-    );
+export function ThemeProvider({ children }: { children: ReactNode }) {
+    const theme = useSyncExternalStore(subscribeTheme, getTheme, () => SERVER_THEME);
 
     useEffect(() => {
-        applyTheme(theme);
+        syncDocumentTheme();
     }, [theme]);
 
-    const setTheme = useCallback(
-        (next: Theme) => {
-            try {
-                localStorage.setItem(storageKey, next);
-            } catch {
-                /* ignore quota / private mode failures */
-            }
-            emitThemeChange();
-        },
-        [storageKey],
-    );
+    const value = useMemo(() => ({ theme, setTheme }), [theme]);
 
-    const value = useMemo(() => ({ theme, resolvedTheme: theme, setTheme }), [theme, setTheme]);
-
-    return <ThemeProviderContext.Provider value={value}>{children}</ThemeProviderContext.Provider>;
+    return <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>;
 }
 
 export const useTheme = () => {
-    const context = useContext(ThemeProviderContext);
+    const context = useContext(ThemeContext);
     if (context === undefined) throw new Error('useTheme must be used within a ThemeProvider');
     return context;
 };
