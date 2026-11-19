@@ -5,6 +5,7 @@ Next.js App Router portfolio for projects, experience, and resume.
 ## Stack
 
 - Next.js 16 (App Router, React Server Components)
+- Node.js 24
 - TypeScript
 - Tailwind CSS
 - Standalone Next.js output (`output: 'standalone'`) for self-hosted deploys
