@@ -4,22 +4,11 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
+import { PageLinks } from '@/components/page-links';
 import { ThemeToggle } from '@/components/theme-toggle';
 import { HamburgerMenu } from './hamburger-menu';
 import { focusRing, glassPanelClass, portraitFrameClass } from '@/lib/styles';
 import { cn } from '@/lib/utils';
-
-const pages = [
-    { name: 'Home', link: '/' },
-    { name: 'Experience', link: '/experiences' },
-    { name: 'Projects', link: '/projects' },
-];
-
-const activeNavClass = 'bg-accent/15 font-medium text-accent';
-
-function isActivePage(pathname: string, link: string): boolean {
-    return link === '/' ? pathname === '/' : pathname.startsWith(link);
-}
 
 export function NavBar() {
     const [isExpanded, setExpanded] = useState(false);
@@ -78,24 +67,7 @@ export function NavBar() {
                     </Link>
                     <div className="flex items-center space-x-4 md:space-x-6">
                         <div className="hidden space-x-2 md:flex">
-                            {pages.map((page) => {
-                                const isActive = isActivePage(pathname, page.link);
-                                return (
-                                    <Link
-                                        key={page.name}
-                                        href={page.link}
-                                        aria-current={isActive ? 'page' : undefined}
-                                        className={cn(
-                                            'rounded-full px-3 py-1.5 text-muted-foreground transition-colors duration-200 hover:text-accent',
-                                            focusRing,
-                                            isActive && activeNavClass,
-                                            isActive && 'ring-1 ring-accent/25',
-                                        )}
-                                    >
-                                        {page.name}
-                                    </Link>
-                                );
-                            })}
+                            <PageLinks pathname={pathname} variant="bar" />
                         </div>
                         <ThemeToggle />
                         <div className="md:hidden">
@@ -117,26 +89,12 @@ export function NavBar() {
                             : undefined
                     }
                 >
-                    {pages.map((page, index) => {
-                        const isActive = isActivePage(pathname, page.link);
-                        return (
-                            <li key={page.name} className="flex w-full">
-                                <Link
-                                    ref={index === 0 ? firstLinkRef : undefined}
-                                    className={cn(
-                                        'm-1 inline-flex min-h-11 w-full items-center justify-center rounded-xl text-muted-foreground transition-colors duration-200 hover:bg-accent/10 hover:text-accent',
-                                        focusRing,
-                                        isActive && activeNavClass,
-                                    )}
-                                    href={page.link}
-                                    aria-current={isActive ? 'page' : undefined}
-                                    onClick={() => setExpanded(false)}
-                                >
-                                    {page.name}
-                                </Link>
-                            </li>
-                        );
-                    })}
+                    <PageLinks
+                        pathname={pathname}
+                        variant="drawer"
+                        onNavigate={() => setExpanded(false)}
+                        firstLinkRef={firstLinkRef}
+                    />
                 </ul>
             </nav>
         </div>

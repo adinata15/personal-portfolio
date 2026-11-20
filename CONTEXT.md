@@ -19,3 +19,7 @@ _Avoid_: Role, degree-as-job
 **Certification**:
 A named qualification granted by an issuing organization.
 _Avoid_: Role, Education
+
+**Page**:
+A destination a visitor can open by name: Home, Experience, or Projects. The Experience Page presents the Experience.
+_Avoid_: route
