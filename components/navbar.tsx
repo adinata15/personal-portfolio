@@ -8,6 +8,7 @@ import { PageLinks } from '@/components/page-links';
 import { ThemeToggle } from '@/components/theme-toggle';
 import { HamburgerMenu } from './hamburger-menu';
 import { focusRing, glassPanelClass, portraitFrameClass } from '@/lib/styles';
+import { siteLines } from '@/lib/site-lines';
 import { cn } from '@/lib/utils';
 
 export function NavBar() {
@@ -63,7 +64,9 @@ export function NavBar() {
                                 priority
                             />
                         </div>
-                        <span className="text-xl font-semibold text-foreground">Adi Nata</span>
+                        <span className="text-xl font-semibold text-foreground">
+                            {siteLines.name}
+                        </span>
                     </Link>
                     <div className="flex items-center space-x-4 md:space-x-6">
                         <div className="hidden space-x-2 md:flex">

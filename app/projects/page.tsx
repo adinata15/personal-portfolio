@@ -8,11 +8,11 @@ import {
     pageMainClass,
     pageTitleClass,
 } from '@/lib/styles';
+import { siteLines } from '@/lib/site-lines';
 
 export const metadata: Metadata = {
     title: 'Projects',
-    description:
-        'Selected software projects by Adi Nata — laser tag IoT systems, e-commerce, and this portfolio.',
+    description: siteLines.projectsDescription,
 };
 
 export default function ProjectPage() {

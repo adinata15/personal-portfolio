@@ -1,5 +1,6 @@
 import { socials } from '@/data/home';
 import { focusRing } from '@/lib/styles';
+import { siteLines } from '@/lib/site-lines';
 import { cn } from '@/lib/utils';
 
 const iconClass = 'h-8 w-8';
@@ -98,7 +99,9 @@ export function SocialLinks() {
                         focusRing,
                     )}
                     aria-label={
-                        social.external ? `${social.title} (opens in a new tab)` : 'Email Adi Nata'
+                        social.external
+                            ? `${social.title} (opens in a new tab)`
+                            : `Email ${siteLines.name}`
                     }
                     {...(social.external ? { target: '_blank', rel: 'noreferrer noopener' } : {})}
                 >

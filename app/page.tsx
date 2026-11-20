@@ -16,12 +16,12 @@ import {
     pageGutterClass,
     sectionTitleClass,
 } from '@/lib/styles';
+import { siteLines } from '@/lib/site-lines';
 import { cn } from '@/lib/utils';
 
 export const metadata: Metadata = {
     title: 'Home',
-    description:
-        'Adi Nata — Software Engineer building full-stack web apps, distributed backends, and secure cloud platforms. Explore projects, experience, and resume.',
+    description: siteLines.homeDescription,
 };
 
 const sectionSpacing = 'mb-16 md:mb-20';
@@ -46,7 +46,7 @@ function HeroPortrait() {
                 <div className="relative h-full w-full overflow-hidden rounded-full bg-neutral-300 dark:bg-neutral-700">
                     <Image
                         src="/images/personal.png"
-                        alt="Photo of Adi Nata"
+                        alt={`Photo of ${siteLines.name}`}
                         fill
                         priority
                         sizes="(max-width: 768px) 144px, 176px"
@@ -66,14 +66,13 @@ function Hero() {
                     <HeroPortrait />
                     <div className="text-center md:text-left">
                         <h1 className="mb-4 text-balance text-4xl font-bold text-foreground md:text-6xl">
-                            Hi, I&apos;m <span className="name-gradient">Adi Nata</span>
+                            Hi, I&apos;m <span className="name-gradient">{siteLines.name}</span>
                         </h1>
                         <p className="mb-3 max-w-2xl text-balance text-lg text-foreground md:text-xl">
-                            Software engineer building full-stack web apps, distributed backends,
-                            and secure cloud platforms.
+                            {siteLines.specialties}
                         </p>
                         <p className="mb-8 max-w-2xl text-base text-muted-foreground">
-                            Passionate about technology, nature, and cool stories.
+                            {siteLines.heroKicker}
                         </p>
                         <div className="flex flex-col justify-center gap-3 sm:flex-row md:justify-start">
                             <Link href="/projects" className={ctaClass}>
@@ -105,12 +104,7 @@ export default function MainPage() {
                 <section id="about" className={sectionSpacing}>
                     <h2 className={sectionTitleClass}>About Me</h2>
                     <div className={cn(cardClass, 'grid items-center gap-8 p-8 md:grid-cols-2')}>
-                        <p className="text-lg leading-relaxed text-foreground">
-                            Software engineer building full-stack apps, distributed backends, and
-                            secure cloud platforms across manufacturing, research, and government.
-                            Outside of work, I hike, read, and draw inspiration from nature for how
-                            I build.
-                        </p>
+                        <p className="text-lg leading-relaxed text-foreground">{siteLines.about}</p>
                         <div className="flex items-center justify-center gap-6 sm:gap-8">
                             {interestNames.map((interest, index) => (
                                 <Fragment key={interest}>

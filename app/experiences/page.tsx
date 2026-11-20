@@ -9,12 +9,12 @@ import {
     pageMainClass,
     pageTitleClass,
 } from '@/lib/styles';
+import { siteLines } from '@/lib/site-lines';
 import { cn } from '@/lib/utils';
 
 export const metadata: Metadata = {
     title: 'Experience',
-    description:
-        'Professional experience, education, and certifications of Adi Nata — research engineering, manufacturing software, and secure cloud platforms.',
+    description: siteLines.experienceDescription,
 };
 
 export default function ExperiencePage() {
@@ -26,7 +26,7 @@ export default function ExperiencePage() {
                         <h1 className={pageTitleClass}>Experience</h1>
                         <p className={pageIntroClass}>
                             Roles across research engineering, manufacturing software, and secure
-                            cloud platforms — plus education and certifications.
+                            cloud platforms, plus education and certifications.
                         </p>
                     </header>
                     <ResumeDownloadButton />

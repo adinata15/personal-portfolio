@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import { glassPanelClass, portraitFrameClass } from '@/lib/styles';
+import { siteLines } from '@/lib/site-lines';
 import { cn } from '@/lib/utils';
 
 export function Footer() {
@@ -11,11 +12,9 @@ export function Footer() {
                         <div className={cn(portraitFrameClass, 'h-8 w-8 min-w-8')}>
                             <Image src="/images/personal.png" alt="" width={32} height={32} />
                         </div>
-                        <span className="text-lg font-semibold">Adi Nata</span>
+                        <span className="text-lg font-semibold">{siteLines.name}</span>
                     </div>
-                    <p className="text-sm text-muted-foreground">
-                        Software Engineer · Nature Enthusiast · Bookworm
-                    </p>
+                    <p className="text-sm text-muted-foreground">{siteLines.footerTagline}</p>
                 </div>
             </div>
         </footer>

@@ -7,6 +7,7 @@ import { NavBar } from '@/components/navbar';
 import { Footer } from '@/components/footer';
 import { MouseEffect } from '@/components/mouse-effect';
 import { siteUrl } from '@/lib/site';
+import { siteLines } from '@/lib/site-lines';
 import { themeBootScript } from '@/lib/theme';
 import { cn } from '@/lib/utils';
 
@@ -27,25 +28,22 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
     metadataBase: new URL(siteUrl),
     title: {
-        default: "Adi Nata's Portfolio",
-        template: "%s | Adi Nata's Portfolio",
+        default: siteLines.portfolioTitle,
+        template: `%s | ${siteLines.portfolioTitle}`,
     },
-    description:
-        'Portfolio of Adi Nata — software engineer specializing in full-stack web, distributed backends, and secure cloud platforms.',
+    description: siteLines.rootDescription,
     openGraph: {
-        title: "Adi Nata's Portfolio",
-        description:
-            'Software engineer specializing in full-stack web, distributed backends, and secure cloud platforms.',
+        title: siteLines.portfolioTitle,
+        description: siteLines.specialties,
         url: siteUrl,
-        siteName: "Adi Nata's Portfolio",
+        siteName: siteLines.portfolioTitle,
         locale: 'en_US',
         type: 'website',
     },
     twitter: {
         card: 'summary',
-        title: "Adi Nata's Portfolio",
-        description:
-            'Software engineer specializing in full-stack web, distributed backends, and secure cloud platforms.',
+        title: siteLines.portfolioTitle,
+        description: siteLines.specialties,
     },
 };
 
